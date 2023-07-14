@@ -1,22 +1,29 @@
-TrueNAS Arr Suite and Media Centre guide for dummies. Created 13/7/2023 for TrueNAS scale 22.12.3.1
+#### TrueNAS Arr Suite and Media Centre guide for dummies. Created 13/7/2023 for TrueNAS scale 22.12.3.1
 
-1. [Install](#1-install)
+#### This guide is written to be followed in order from top of the page to the bottom. Skipping past parts or following them out of order doesn't work and help won't be given to you.
+
+##### This might be overwhelming at first. Don't panic, take a deep breath, grab a coffee and be prapared to read. I want to make this as painless as possible for you. It was an absolute balls-ache for me. I'm in a love-hate with TrueNAS.
 
 Contents\
-1 - Install & Setup TrueNAS\
-    1.1 - Storage\
-    1.2 - Apps\
-2 - Prowlarr & qBittorrent setup (with VPN addons)\
+1 - [Setup TrueNAS](#1-install)\
+&nbsp; &nbsp; 1.1 - [Storage](#1-1-storage)\
+&nbsp; &nbsp; 1.2 - [Apps](#1-2-apps)\
+&nbsp; &nbsp; 1.3 - [Filesystem](#1-3-filesystem)\
+&nbsp; &nbsp; 1.4 - [HeavyScript](#1-4-heavyscript)\
+2 - [Prowlarr & qBittorrent setup (with VPN addons)](#2-prowlarr)\
+    2.2 - qBittorrent\
+    2.3 - qBit VPN\
+    2.4 - Prowlarr Proxy\
 3 - Radarr and Sonarr setup\
 4 - Unpackerr\
 5 - Emby & Jellyseer setup\
 6 - Recyclarr setup\
 7 - Minecraft-java setup
 
-## 1-Install
-- Setup hardware - ideally one SSD 100GB or less as boot disk and as many HDDs as data storage. Minimum 1 HDD, Recommended 2 the same size for [RAID mirroring](https://www.techtarget.com/searchstorage/definition/disk-mirroring).
+### 1-Install
+- Setup hardware - ideally one SSD 100GB or less as boot disk and as many HDDs as data storage. Minimum 1 HDD, Recommended 2 or more the same size for [RAID mirroring](https://www.techtarget.com/searchstorage/definition/disk-mirroring).
 - Flash [TrueNAS Scale ISO](https://www.truenas.com/download-truenas-scale/) to a USB drive using [rufus](https://rufus.ie/en/):
-  - **This will erase all data on the USB. Backup before continuing.**
+  - This will erase all data on the USB. Backup before continuing.
   - Select USB drive. Check `List USB hard drives` if you can't find yours. **Click Start.**
   - Check flash in ISO Mode (or the Recommended setting) if a Hybrid ISO prompt appears
 - **Take any HDDs out of your system now**, leaving only the boot SSD drive plugged into your system.
@@ -35,22 +42,54 @@ Contents\
 Bear in mind this screenshot was taken from a virtual machine.
 - Shut down the system using the top right menu and put your HDD drives back into the system, then reboot.
 
-1.1 - Storage
+### 1-1-Storage
 - Log back into the Web UI and head to the **Storage** tab
 - Create a new pool ideally with raid1 (single disk mirroring) or better.
 - Name the pool `tank`
 
-1.2 - Apps
-- Head to the Apps tab and select your `tank` pool when asked where to put Apps
-- At the top navigate to **Manage Catalogs** and **Add Catalog**
+### 1-2-Apps
+- Head to the **Apps** tab and select your `tank` pool when asked where to put Apps
+- At the top navigate to **Manage Catalogs** -> **Add Catalog**
 - Name it truecharts, uncheck force create, add `https://github.com/truecharts/catalog` as the repository, ensure `stable` as the preferred trains and `main` as the branch, and Save.
 
-So, pretty standard stuff so far. This is where it gets different from other beginner guides as we want our system to last more than 6 months. We are only going to create one datset so that we can use hardlinks detailed on [TRaSH guides](https://trash-guides.info/Hardlinks/How-to-setup-for/Docker/#bad-path-suggestion). So:
+So, pretty standard stuff so far. This is where it gets different from other beginner guides as we want our system to last more than 6 months. We are only going to create one datset so that we can use hardlinks detailed on [TRaSH guides](https://trash-guides.info/Hardlinks/How-to-setup-for/Docker/#bad-path-suggestion). 
 
+### 1-3-Filesystem
 - Head to **Storage**, select `tank` and **Add Dataset**
-- Name the dataset `data`, and leave settings default except for `Case Sensitivity`; change this to `Insensitive`
+- Name the dataset `data`, and leave settings default except for `Case Sensitivity` change this to `Insensitive`.
 
-Section 4 - Unpackerr\
+Next we need to add subfolders [like in the TRaSH guide](https://trash-guides.info/Hardlinks/How-to-setup-for/Docker/#folder-structure).
+
+- Go to **System Settings** -> **Shell**
+
+You can use this shell to enter the command line as root, but I'm going to assume you're using your own SSH client (like [PuTTY](https://www.putty.org/)) since the web shell doesn't support nano file edit properly. You can turn on SSH in **System Settings** -> **Services**. Set auto-start with the system and user as root.
+
+- Enter `cd /`
+- Enter `cd mnt/tank/data`
+- Enter `mkdir media`
+- Enter `mkdir torrents`
+- Enter `mkdir vpn`
+- Enter `cd media`
+- Enter `mkdir movies`
+- Enter `mkdir tv`
+
+Now the filesystem is setup, we're going to install an app automation and updater tool called HeavyScript, written by TrueCharts dev and TRaSH guide writer HeavyBullets. 
+
+### 1-4-HeavyScript
+- While in the Shell as root:
+- Enter `cd /`
+- Enter `curl -s https://raw.githubusercontent.com/Heavybullets8/heavy_script/main/functions/deploy.sh | bash && source "$HOME/.bashrc" 2>/dev/null && source "$HOME/.zshrc" 2>/dev/null`
+- Navigate to **System Settings** -> **Advanced** -> **Cron Jobs** and click **Add**
+- Read and **Close** the warning
+- Name the job `heavyscript`, ensuring it **runs as root**
+- Enter the following in the command line: `bash /root/heavy_script/heavy_script.sh update`
+- Leave the rest of the settings except make sure it is **Enabled**.
+
+Go back into the Shell as root making sure to `cd /` once in. Now we are going to configure heavyscript. Don't worry, it's pretty easy, just be patient, and prepare to do some reading.
+
+- Run
+
+### 4-Unpackerr
 Install from TrueCharts. In the Extra Environment variables, add the following with changes to the API keys and URLs to suit your system:
 
 `UN_SONARR_0_URL`
