@@ -2,7 +2,7 @@
 
 #### This guide is written to be followed in order from top of the page to the bottom. Skipping past parts or following them out of order doesn't work and help won't be given to you.
 
-##### This might be overwhelming at first. Don't panic, take a deep breath, grab a coffee and be prapared to read. I want to make this as painless as possible for you. It was a nightmare for me. It is REALLY useful though, tank you TNAS.
+##### This might be overwhelming at first. Don't panic, take a deep breath, grab a coffee and be prepared to read. I want to make this as painless as possible for you. It was a nightmare for me. It is REALLY useful though, tank you TNAS.
 ##### I've added links throughout for extra info, they help a bit.
 
 Contents\
