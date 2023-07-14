@@ -3,7 +3,17 @@
 #### This guide is written to be followed in order from top of the page to the bottom. Skipping past parts or following them out of order doesn't work and help won't be given to you.
 
 ##### This might be overwhelming at first. Don't panic, take a deep breath, grab a coffee and be prepared to read. I want to make this as painless as possible for you. It was a nightmare for me. It is REALLY useful though, tank you TNAS.
-##### I've added links throughout for extra info, they help a bit.
+##### Follow the added links
+
+### A note on Piracy 🏴‍☠️
+i don't live in the united states. this is NOT a guide on how to steal things off the internet. this is a **software install guide**. dont break the law of the country u live in. youve been warned - the rest is on you. i do NOT condone piracy. i solely use this system for obtaining content from The Internet Archive. *Promise.*
+
+***Google*** is your friend
+
+
+Ultimately this server setup can show you a list of existing movies and TV shows and allow you to 'Request' them; looking across 'indexers' for the available files. If the files aren't released yet, the 'request' will wait until files are available. But it doesn't stop there, the search programs for movies (Radarr) and TV (Sonarr) have customisable quality profilings, only allowing BluRay-1080 and WEB-1080 of media, and ignoring TELESYNC and TV-SD rips for example. Then after all that, downloading metadata, seeding for a day and placing into a media folder to stream through multi-platform streaming app Emby, **all automagically**.
+
+Oh and the download client and indexers *have* to use a VPN in some countries including India and the UK because most internet providers block them, so you need a [TrueNAS-WireGuard compatible VPN](https://github.com/qdm12/gluetun-wiki/tree/main/setup/providers) to a country like Sweden. I use [Windscribe](https://windscribe.com/), £40/year, 100+ global servers, I love em. Heard Mullvad VPN is pretty good too.
 
 Contents\
 1 - [Setup TrueNAS](#1-install)\
