@@ -1,7 +1,11 @@
 TrueNAS Arr Suite and Media Centre guide for dummies. Created 13/7/2023 for TrueNAS scale 22.12.3.1
 
-Content\
+1. [Install](#1-install)
+
+Contents\
 1 - Install & Setup TrueNAS\
+    1.1 - Storage\
+    1.2 - Apps\
 2 - Prowlarr & qBittorrent setup (with VPN addons)\
 3 - Radarr and Sonarr setup\
 4 - Unpackerr\
@@ -9,7 +13,7 @@ Content\
 6 - Recyclarr setup\
 7 - Minecraft-java setup
 
-1 - Install
+## 1-Install
 - Setup hardware - ideally one SSD 100GB or less as boot disk and as many HDDs as data storage. Minimum 1 HDD, Recommended 2 the same size for [RAID mirroring](https://www.techtarget.com/searchstorage/definition/disk-mirroring).
 - Flash [TrueNAS Scale ISO](https://www.truenas.com/download-truenas-scale/) to a USB drive using [rufus](https://rufus.ie/en/):
   - **This will erase all data on the USB. Backup before continuing.**
@@ -30,14 +34,21 @@ Content\
 ![image](https://github.com/d1ddle/truenas-arr-suite/assets/69437145/87e3eeb7-906f-467b-b89c-e941c1ce702d)
 Bear in mind this screenshot was taken from a virtual machine.
 - Shut down the system using the top right menu and put your HDD drives back into the system, then reboot.
+
+1.1 - Storage
 - Log back into the Web UI and head to the **Storage** tab
 - Create a new pool ideally with raid1 (single disk mirroring) or better.
 - Name the pool `tank`
+
+1.2 - Apps
 - Head to the Apps tab and select your `tank` pool when asked where to put Apps
 - At the top navigate to **Manage Catalogs** and **Add Catalog**
-- Name it truecharts, uncheck force create, add `https://github.com/truecharts/catalog` as the repository, ensure `stable` as the preferred trains and `main` as the branch.
+- Name it truecharts, uncheck force create, add `https://github.com/truecharts/catalog` as the repository, ensure `stable` as the preferred trains and `main` as the branch, and Save.
 
-So, pretty standard stuff so far. This is where it gets different from other beginner guides as we want our system to last more than 6 months.
+So, pretty standard stuff so far. This is where it gets different from other beginner guides as we want our system to last more than 6 months. We are only going to create one datset so that we can use hardlinks detailed on [TRaSH guides](https://trash-guides.info/Hardlinks/How-to-setup-for/Docker/#bad-path-suggestion). So:
+
+- Head to **Storage**, select `tank` and **Add Dataset**
+- Name the dataset `data`, and leave settings default except for `Case Sensitivity`; change this to `Insensitive`
 
 Section 4 - Unpackerr\
 Install from TrueCharts. In the Extra Environment variables, add the following with changes to the API keys and URLs to suit your system:
