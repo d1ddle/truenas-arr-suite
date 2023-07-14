@@ -88,7 +88,8 @@ Now the filesystem is setup, we're going to install an app automation and update
 
 Go back into the Shell as root making sure to `cd /` once in. Now we are going to [configure heavyscript](https://github.com/Heavybullets8/heavy_script). Don't worry, it's pretty easy, just be patient, and prepare to do some reading.
 
-- Run `heavy_script` and wait till it finishes, this will generate the config.ini
+- Run `heavyscript` and wait till it finishes, this will generate the config.ini
+- Run `nano ~/heavy_script/config.ini`
 - 
 
 ### 4-Unpackerr
