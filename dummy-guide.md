@@ -56,10 +56,10 @@ Most of the UI is self-explanatory, and when setting stuff up leave options as d
 ![image](https://github.com/d1ddle/truenas-arr-suite/assets/69437145/87e3eeb7-906f-467b-b89c-e941c1ce702d)
 Bear in mind this screenshot was taken from a virtual machine.
 - Shut down the system using the top right menu and put your HDD drives back into the system, then reboot.
-- Go to **System Settings** -> **General** -> **Localization Settings** and apply the correct Timezone, Time Format and Date Format. *****This is ABSOLUTELY NECCESSARY and avoids days of headaches furthur down the line.*****
+- Log back into the Web UI and go to **System Settings** -> **General** -> **Localization Settings** and apply the correct Timezone, Time Format and Date Format. *****This is ABSOLUTELY NECCESSARY and avoids days of headaches furthur down the line.*****
 
 ### 1-1-Storage
-- Log back into the Web UI and head to the **Storage** tab
+- Head to the **Storage** tab
 - Create a new pool ideally with raid1 (single disk mirroring) or better.
 - Name the pool `tank`
 
