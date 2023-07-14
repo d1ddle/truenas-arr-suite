@@ -2,7 +2,8 @@
 
 #### This guide is written to be followed in order from top of the page to the bottom. Skipping past parts or following them out of order doesn't work and help won't be given to you.
 
-##### This might be overwhelming at first. Don't panic, take a deep breath, grab a coffee and be prapared to read. I want to make this as painless as possible for you. It was an absolute balls-ache for me. I'm in a love-hate with TrueNAS.
+##### This might be overwhelming at first. Don't panic, take a deep breath, grab a coffee and be prapared to read. I want to make this as painless as possible for you. It was a nightmare for me. It is REALLY useful though, tank you TNAS.
+##### I've added links throughout for extra info, they help a bit.
 
 Contents\
 1 - [Setup TrueNAS](#1-install)\
@@ -85,9 +86,10 @@ Now the filesystem is setup, we're going to install an app automation and update
 - Enter the following in the command line: `bash /root/heavy_script/heavy_script.sh update`
 - Leave the rest of the settings except make sure it is **Enabled**.
 
-Go back into the Shell as root making sure to `cd /` once in. Now we are going to configure heavyscript. Don't worry, it's pretty easy, just be patient, and prepare to do some reading.
+Go back into the Shell as root making sure to `cd /` once in. Now we are going to [configure heavyscript](https://github.com/Heavybullets8/heavy_script). Don't worry, it's pretty easy, just be patient, and prepare to do some reading.
 
-- Run
+- Run `heavy_script` and wait till it finishes, this will generate the config.ini
+- 
 
 ### 4-Unpackerr
 Install from TrueCharts. In the Extra Environment variables, add the following with changes to the API keys and URLs to suit your system:
