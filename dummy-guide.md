@@ -2,7 +2,7 @@
 
 ##### This guide is written to be followed in order from top of the page to the bottom. Skipping past parts or following them out of order doesn't work and help won't be given to you.
 
-##### This might be overwhelming at first. Don't panic, take a deep breath, grab a coffee and be prepared to read. I want to make this as painless as possible for you. It was a nightmare for me. It is REALLY useful though, tank you TNAS. Oh and Follow the added links
+##### This might be overwhelming at first. Don't panic, take a deep breath, grab a coffee and be prepared to read. I want to make this as painless as possible for you. It was a nightmare for me. It is REALLY useful though, tank you TNAS. Don't forget, you can always ask for help in the ServArr suite and TrueNAS discord servers, I'm sure they'd be happy to help provided the right information.
 
 ### A note on Piracy 🏴‍☠️
 i don't live in the united states. this is NOT a guide on how to steal things off the internet. this is a **software install guide**. dont break the law of the country u live in. youve been warned - the rest is on you. i do NOT condone piracy.
@@ -27,8 +27,8 @@ Most of the UI is self-explanatory, and when setting stuff up leave options as d
 &nbsp; &nbsp; 1.4 - [HeavyScript](#1-4-heavyscript)\
 2 - [Prowlarr & qBittorrent setup (with VPN addons)](#2-prowlarr)\
 &nbsp; &nbsp; 2.2 - [qBittorrent](#2-1-qbittorrent)\
-&nbsp; &nbsp; 2.3 - qBit VPN\
-&nbsp; &nbsp; 2.4 - Prowlarr Proxy\
+&nbsp; &nbsp; 2.3 - [qBit VPN](#2-2-qbittorrent-vpn)\
+&nbsp; &nbsp; 2.4 - [Prowlarr VPN Indexer Proxy](#2-3-prowlarr-proxy)\
 3 - Radarr and Sonarr setup\
 4 - Unpackerr\
 5 - Emby & Jellyseer setup\
@@ -155,6 +155,50 @@ Move your cursor to the end of the IP in the address bar and hit enter to refres
 - Go to the **Advanced** tab and check `Reannounce all trackers when IP or port changed`. We'll be coming back to this later to add other settings.
 - Click `Save` at the bottom of the popup (you may have to zoom out the page)
 
+### 2-2-qBittorrent-vpn
+- Pull the required environment variables and Wireguard only variables from your chosen service provider [outlined in the guides](https://github.com/qdm12/gluetun-wiki/tree/main/setup/providers). For me this was `VPN_TYPE=wireguard`, `VPN_SERVICE_PROVIDER=windscribe`, `WIREGUARD_PRIVATE_KEY=???`, `WIREGUARD_ADDRESSES=???` and `WIREGUARD_PRESHARED_KEY=???`. We'll enter these into the Enviro variables in the Addons section of qbit.
+![image](https://github.com/d1ddle/truenas-arr-suite/assets/69437145/d60908e6-d203-436f-8eb1-9d4961f66b6c)
+- Find qbit in **Apps** tab and click the three dots, **Edit**
+![image](https://github.com/d1ddle/truenas-arr-suite/assets/69437145/b7404ee0-f652-45ec-94e6-ba04a9bc9795)
+- Scroll all the way down to VPN and change the type to **Gluetun**, **Enabling Killswitch**.
+- Click **Add** and enter your local IPv4 network to exclude from the VPN Killswitch, eg; my TrueNAS IP is 192.168.1.271
+- My local IPv4 network to exclude would be 192.168.1.0/24
+- Take of the last set of digits and replace it with 0/24; `In almost all situations the Network ID will end in a .0 (ie. 192.168.0.0, 10.0.0.0, 172.16.0.0) and the CIDR will be /24. If you fill this entry out incorrectly Gluetun will fail to start and the application it is attached to will fail to start.`
+- If confused, look at the [Gluetun setup](https://truecharts.org/manual/SCALE/guides/vpn-setup/#wireguard-example), you shouldn't have an IPv6 network since the Arrs don't properly support it yet.
+![image](https://github.com/d1ddle/truenas-arr-suite/assets/69437145/3253b880-5f46-4a97-94fe-2d96ea6d9c5d)
+- Now, time to add enviro variables. VPN Config File Location is not necessary, we will be using environment variables instead, so leave it blank
+- **Add** a new VPN Enviro Variable, and input all required Environment variables and Wireguard only variables and their values into this part.
+![image](https://github.com/d1ddle/truenas-arr-suite/assets/69437145/35ef1e9e-b4fa-4475-aefe-fcdefa5f2581)
+And so on. When done `Save`.
+
+Now we can go back into the qBit UI and change our Network settings.
+- In **Tools** -> **Options** -> **Advanced**, change the `Network Interface` to `tun0`, short for Gluetun, the name of the VPN addon.
+- This settings page should now match mine.
+![image](https://github.com/d1ddle/truenas-arr-suite/assets/69437145/8878a921-6d7b-4472-ad2a-3fc626e8e075)
+
+### 2-3-Prowlarr-Proxy
+The VPN Indexer proxy for prowlarr will use the same addon Gluetun from the setup above, so make sure you've completed that first. This is all also written [in TrueCharts' guide](https://truecharts.org/manual/SCALE/guides/vpn-setup/#proxy-example)
+
+- Under **Addon Environment Variables** while editing the qBittorrent app settings, add `HTTPPROXY=on` and `HTTPPROXY_LOG=on`
+- ![image](https://github.com/d1ddle/truenas-arr-suite/assets/69437145/eccf44d4-0271-45df-a7e4-7b7743b30f44)
+
+- Under **Networking and Services** while editing the qBittorrent app settings, check `Show Expert Config` underneath **TCP Service Port Configuration**.
+- **Add** a new **Manual Custom Service** called `proxy`
+- Set the **Service Type** to `ClusterIP (Do Not Expose Ports)`.
+&nbsp; &nbsp; - **Note:** If you wish to use this VPN setup for other devices on the same network like a mobile phone or Xbox, set the **Service Type** to `Load Balancer (Expose Ports)`, leaving `LoadBalancer IP` blank.
+- **Add** an **Additional Service Port** called `proxy`, setting the **Port Type** to `HTTP`, and both **Target** and **Container** Ports to `8888`.
+
+![image](https://github.com/d1ddle/truenas-arr-suite/assets/69437145/8f158948-4fcd-44b0-a4ef-038afc1a6fd8)
+![image](https://github.com/d1ddle/truenas-arr-suite/assets/69437145/95379e0d-5064-48ab-afe2-d95450d96dcd)
+
+Click `Save`
+
+Now we can add this to Prowlarr.
+- Under **Settings** -> **Indexers** -> **Add [Indexer Proxies]** in the Prowlarr UI, select `Http`, called `GluetunProxy`
+- Add `proxy` to the tags
+- Host should be `qbittorrent-proxy.ix-qbittorrent.svc.cluster.local` if you installed Gluetun on qbittorrent like here
+- Port: `8888`
+
 ### 4-Unpackerr
 Install from TrueCharts. In the Extra Environment variables, add the following with changes to the API keys and URLs to suit your system:
 
@@ -173,6 +217,5 @@ Install from TrueCharts. In the Extra Environment variables, add the following w
 
 Each entry should look something like this:
 ![image](https://github.com/d1ddle/truenas-arr-suite/assets/69437145/a04971e7-cb16-40d6-9515-0d88be15567b)
-
 
 Click Save. That's unpackerr sorted.
