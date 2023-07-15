@@ -137,10 +137,14 @@ Should look like this:
 Then Save.
 - `Open` the web UI and if you get this screen:
 ![image](https://github.com/d1ddle/truenas-arr-suite/assets/69437145/e28d8a45-0599-4fb1-88ef-5d5f3560bf1c)
-Move your cursor to the end of the IP in the address bar and hit enter to refresh. Now enter the default username and password,  **admin:adminadmin**
+Move your cursor to the end of the IP in the address bar and hit enter to refresh. Now enter the default username **admin** and password **adminadmin**
 ![image](https://github.com/d1ddle/truenas-arr-suite/assets/69437145/c7fd6ab0-6e2c-40da-929a-da10626a76f2)
 
-- Go to **Tools** -> **Options**
+- Go to **Tools** -> **Options** -> **Downloads** and change the settings to the following:
+![image](https://github.com/d1ddle/truenas-arr-suite/assets/69437145/59129186-1f1f-4c2d-a960-767863d8b1b7)
+- Go to the **BitTorrent** tab and change these under Seeding Limits:
+![image](https://github.com/d1ddle/truenas-arr-suite/assets/69437145/99bcff33-7b64-412f-8808-c6cc6a793289)
+
 
 
 ### 4-Unpackerr
