@@ -66,7 +66,7 @@ Bear in mind this screenshot was taken from a virtual machine.
 ### 1-2-Apps
 - Head to the **Apps** tab and select your `tank` pool when asked where to put Apps
 - At the top navigate to **Manage Catalogs** -> **Add Catalog**
-- Name it truecharts, uncheck force create, add `https://github.com/truecharts/catalog` as the repository, ensure `stable` as the preferred trains and `main` as the branch, and Save.
+- Name it `truecharts`, uncheck `force create`, add `https://github.com/truecharts/catalog` as the repository, ensure `stable` as the preferred trains and `main` as the branch, and Save.
 
 So, pretty standard stuff so far. This is where it gets different from other beginner guides as we want our system to last more than 1 month. We are only going to create one datset so that we can use hardlinks detailed on [TRaSH guides](https://trash-guides.info/Hardlinks/How-to-setup-for/Docker/#bad-path-suggestion). 
 
