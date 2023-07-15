@@ -142,10 +142,12 @@ Move your cursor to the end of the IP in the address bar and hit enter to refres
 
 - Go to **Tools** -> **Options** -> **Downloads** and change the settings to the following:
 ![image](https://github.com/d1ddle/truenas-arr-suite/assets/69437145/59129186-1f1f-4c2d-a960-767863d8b1b7)
-- Go to the **BitTorrent** tab and change these under Seeding Limits:
-![image](https://github.com/d1ddle/truenas-arr-suite/assets/69437145/99bcff33-7b64-412f-8808-c6cc6a793289)
-
-
+- Go to the **Connection** tab and change your settings to match these:
+![image](https://github.com/d1ddle/truenas-arr-suite/assets/69437145/c8fcbba4-1642-4b1e-9972-126b92ee0843)
+- Go to the **BitTorrent** tab and change your settings to match these:
+![image](https://github.com/d1ddle/truenas-arr-suite/assets/69437145/57518055-0b06-402b-ad88-0969c1bf0b89)
+- Go to the **Advanced** tab and check `Reannounce all trackers when IP or port changed`. We'll be coming back to this later to add other settings.
+- Click `Save` at the bottom of the popup (you may have to zoom out the page)
 
 ### 4-Unpackerr
 Install from TrueCharts. In the Extra Environment variables, add the following with changes to the API keys and URLs to suit your system:
