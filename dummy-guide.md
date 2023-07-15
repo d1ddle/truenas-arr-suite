@@ -126,18 +126,24 @@ Should look like this after a page refresh.
 - Click `Install` making sure you're installing the **TrueCharts** version like prowlarr. But we need to change some things before you scroll through and click save, so pay attention!
 ![image](https://github.com/d1ddle/truenas-arr-suite/assets/69437145/d6d9d78f-6ca1-4da0-8cfa-ccedefde877f)
 - In **Storage and Persistence**, make sure the **Type of Storage** is `PVC (simple)` and Read Only is unchecked.
-- Still in the Storage section, click **Add** in **Configure Additional App Storage** and add the dataset with the following options:
+- Still in the Storage section, click **Add** in **Configure Additional App Storage** and add the NFS data share we created earlier with the following options:
     - Type of Storage: NFS Share
     - NFS Server: localhost
     - Path on NFS Server: /mnt/tank/data
     - Read only: UNchecked
     - mountPath: /data
-Should look like this:
+
+It should now look like this:
+
 ![image](https://github.com/d1ddle/truenas-arr-suite/assets/69437145/183a5293-5eb8-496e-a814-5c30501b19ec)
+
 Then Save.
 - `Open` the web UI and if you get this screen:
+ 
 ![image](https://github.com/d1ddle/truenas-arr-suite/assets/69437145/e28d8a45-0599-4fb1-88ef-5d5f3560bf1c)
+
 Move your cursor to the end of the IP in the address bar and hit enter to refresh. Now enter the default username **admin** and password **adminadmin**
+
 ![image](https://github.com/d1ddle/truenas-arr-suite/assets/69437145/c7fd6ab0-6e2c-40da-929a-da10626a76f2)
 
 - Go to **Tools** -> **Options** -> **Downloads** and change the settings to the following:
