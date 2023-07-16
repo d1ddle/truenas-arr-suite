@@ -38,7 +38,7 @@ Most of the UI is self-explanatory, and when setting stuff up leave options as d
 <details>
 <summary>
   
-### 1-Install</summary>
+### 1-Install </summary>
 - Setup hardware - ideally one SSD 100GB or less as boot disk and as many HDDs as data storage. Minimum 1 HDD, Recommended 2 or more the same size for [RAID mirroring](https://www.techtarget.com/searchstorage/definition/disk-mirroring).
 - Flash [TrueNAS Scale ISO](https://www.truenas.com/download-truenas-scale/) to a USB drive using [rufus](https://rufus.ie/en/):
   - This will erase all data on the USB. Backup before continuing.
@@ -64,7 +64,7 @@ Bear in mind this screenshot was taken from a virtual machine.
 
 <details><summary>
   
-### 1-1-Storage</summary>
+### 1-1-Storage </summary>
 - Head to the **Storage** tab
 - Create a new pool ideally with raid1 (single disk mirroring) or better.
 - Name the pool `tank`
@@ -72,7 +72,7 @@ Bear in mind this screenshot was taken from a virtual machine.
 
 <details><summary>
 
-### 1-2-Apps</summary>
+### 1-2-Apps </summary>
 - Head to the **Apps** tab and select your `tank` pool when asked where to put Apps
 - At the top navigate to **Manage Catalogs** -> **Add Catalog**
 - Name it `truecharts`, uncheck `force create`, add `https://github.com/truecharts/catalog` as the repository, ensure `stable` as the preferred trains and `main` as the branch, and Save.
@@ -83,7 +83,7 @@ So, pretty standard stuff so far. This is where it gets different from other beg
 
 <details><summary>
   
-### 1-3-Filesystem</summary>
+### 1-3-Filesystem </summary>
 - Head to **Storage**, select `tank` and **Add Dataset**
 - Name the dataset `data`, and leave settings default except for `Case Sensitivity` change this to `Insensitive`.
 
@@ -126,7 +126,7 @@ Now the folder structure is setup, we have to create an NFS share on the `tank` 
 Now the filesystem is completely setup, we're going to install an app automation and updater tool called HeavyScript, written by TrueCharts dev and TRaSH guide writer HeavyBullets.
 <details><summary>
 
-### 1-4-HeavyScript</summary>
+### 1-4-HeavyScript </summary>
 - While in the Shell as root:
 - Enter `cd /`
 - Enter `curl -s https://raw.githubusercontent.com/Heavybullets8/heavy_script/main/functions/deploy.sh | bash && source "$HOME/.bashrc" 2>/dev/null && source "$HOME/.zshrc" 2>/dev/null`
@@ -145,7 +145,7 @@ Go back into the Shell as root making sure to `cd /` once in. Now we are going t
 </details>
 <details><summary>
 
-### 2-Prowlarr</summary>
+### 2-Prowlarr </summary>
 - Navigate to **Apps** -> **Available Apps** and search `Prowlarr`
 - Click `Install` making sure you're installing the **TrueCharts** version and Save at the bottom without changing anything.
 ![image](https://github.com/d1ddle/truenas-arr-suite/assets/69437145/7dc0ea7b-3dd3-43ba-906e-ffa57316af64)
@@ -154,7 +154,7 @@ Should look like this after a page refresh.
 </details>
 <details><summary>
 
-### 2-1-qBittorrent</summary>
+### 2-1-qBittorrent </summary>
 - Navigate to **Apps** -> **Available Apps** and search `qBittorrent`
 - Click `Install` making sure you're installing the **TrueCharts** version like prowlarr. But we need to change some things before you scroll through and click save, so pay attention!
 ![image](https://github.com/d1ddle/truenas-arr-suite/assets/69437145/d6d9d78f-6ca1-4da0-8cfa-ccedefde877f)
@@ -190,7 +190,8 @@ Move your cursor to the end of the IP in the address bar and hit enter to refres
 </details>
 <details><summary>
 
-### 2-2-qBittorrent-vpn</summary>
+### 2-2-qBittorrent-vpn 
+</summary>
 - Pull the required environment variables and Wireguard only variables from your chosen service provider [outlined in the guides](https://github.com/qdm12/gluetun-wiki/tree/main/setup/providers). For me this was `VPN_TYPE=wireguard`, `VPN_SERVICE_PROVIDER=windscribe`, `WIREGUARD_PRIVATE_KEY=???`, `WIREGUARD_ADDRESSES=???` and `WIREGUARD_PRESHARED_KEY=???`. We'll enter these into the Enviro variables in the Addons section of qbit.
 ![image](https://github.com/d1ddle/truenas-arr-suite/assets/69437145/d60908e6-d203-436f-8eb1-9d4961f66b6c)
 - Find qbit in **Apps** tab and click the three dots, **Edit**
@@ -213,7 +214,7 @@ Now we can go back into the qBit UI and change our Network settings.
 </details>
 <details><summary>
 
-### 2-3-Prowlarr-Proxy</summary>
+### 2-3-Prowlarr-Proxy </summary>
 The VPN Indexer proxy for prowlarr will use the same addon Gluetun from the setup above, so make sure you've completed that first. This is all also written [in TrueCharts' guide](https://truecharts.org/manual/SCALE/guides/vpn-setup/#proxy-example)
 
 - Under **Addon Environment Variables** while editing the qBittorrent app settings, add `HTTPPROXY=on` and `HTTPPROXY_LOG=on`
@@ -238,8 +239,9 @@ Now we can add this to Prowlarr.
 - Click `Test` to confirm the connection and click Save
 ![image](https://github.com/d1ddle/truenas-arr-suite/assets/69437145/986040c4-6fc2-47a1-a16a-5e7fd1fa2006)
 </details>
+<details><summary>
 
-### 3-Radarr
+### 3-Radarr </summary>
 Our first automation app. The install process for radarr is the same as qbittorrent. We only need to add our `/mnt/tank/data` dataset in **Storage and Persistence** and Save, the rest remains the same.
 - Open radarr and be greeted with this screen:
 ![image](https://github.com/d1ddle/truenas-arr-suite/assets/69437145/b0e4514b-8bf9-4b2f-bf70-09cf575ad649)
@@ -291,6 +293,19 @@ Now we'll add a root folder to radarr.
 
 - Go back to **Download Clients** and Enable **Completed Download Handling**, set Interval to 1 minute
 - Check **Redownload** under **Failed Download Handling**.
+
+Now we'll make some changes to only allow WEBrips/bluray for example but it's totally customisable. You're going to have to setup Custom Formats and Quality Profiles. This is quite extensive, so I'm going to link you the guides I used instead of quoting them and removing tattle like I've done so far.
+
+[Start with importing the Custom Formats](https://trash-guides.info/Radarr/Radarr-import-custom-formats/) you need for your setup. Most of you won't need the ones that start with FR- these are french specific.
+
+**Note:** [Start adding more Custom Formats wisely, Don't add all the available Custom Formats!!!](https://trash-guides.info/Radarr/Radarr-import-custom-formats/#start-adding-other-custom-formats-wisely)
+
+When you're happy, [Setup your Quality Profiles](https://trash-guides.info/Radarr/radarr-setup-quality-profiles/#basics), making sure to [use the flowchart](https://trash-guides.info/Radarr/radarr-setup-quality-profiles/#which-quality-profile-should-you-choose) to choose your most useful formats. Most of you will probably end up with Remux + WEB unless you have a TV with fancy features like 4K, Dolby Vision or HDR 10 which I don't. Also I'm greedy so I use 1080WEB + 1080Remux + 1080Bluray in that order. No fancy sound except for 2.1 surround :(
+
+Once you've finished setting up Custom Formats and Quality Profiles, I will guide you through the TRaSH Sync App setup called **Recyclarr**, which will auto download and apply changes to the Custom Formats.
+
+This is Radarr done! Onto Sonarr...
+</details>
 
 ### 5-Unpackerr
 Install from TrueCharts. In the Extra Environment variables, add the following with changes to the API keys and URLs to suit your system:
