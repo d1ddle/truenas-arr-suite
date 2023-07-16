@@ -262,17 +262,18 @@ Now we'll add a root folder to radarr.
 #### Next you could change these following settings to match mine which optimise the whole system, but are optional. A note on **Minimum Free Space** follows.
 
 <details>
-  <summary>Optimal <b>Media Management</b> Settings</summary>
-  ![192 168 1 239_7878_settings_mediamanagement (1)](https://github.com/d1ddle/truenas-arr-suite/assets/69437145/741b5b04-239e-42bb-869c-307f8b009742)
-</details>
-<details>
-<summary><b>Media Management</b> Text instructions</summary>
+<summary>Optimal <b>Media Management</b> Text instructions</summary>
 <ul>
 <li>Scroll to <b>Folders</b> and check <b>Delete empty folders</b></li>
 <li>Scroll to <b>Importing</b> and set the <b>Minimum Free Space</b>. I set mine to a quarter of my total HDD space, which is 116438 MB (117GB). This will pause/prevent downloads until more space is avilable on the disk, preventing complete filling of disk space which could render the server unusable/too slow.</li>
 <li>Check <b>Use Hardlinks instead of Copy</b></li>
 <li>Check <b>Import Extra Files</b> and add `srt` and other subtitle formats in your existing library.</li>
 </ul>
+</details>
+
+<details>
+  <summary>Optimal <b>Media Management</b> Settings</summary>
+  <img src="https://github.com/d1ddle/truenas-arr-suite/assets/69437145/741b5b04-239e-42bb-869c-307f8b009742"></img src>
 </details>
 
 - Go back to **Download Clients** and Enable **Completed Download Handling**, set Interval to 1 minute
