@@ -20,15 +20,15 @@ Most of the UI is self-explanatory, and when setting stuff up leave options as d
 
 **Contents**\
 1 - [Setup TrueNAS](#1-install-)\
-&nbsp; &nbsp; 1.1 - [Storage](#1-1-storage)\
-&nbsp; &nbsp; 1.2 - [Apps](#1-2-apps)\
-&nbsp; &nbsp; 1.3 - [Filesystem](#1-3-filesystem)\
-&nbsp; &nbsp; 1.4 - [HeavyScript](#1-4-heavyscript)\
-2 - [Prowlarr & qBittorrent setup (with VPN addons)](#2-prowlarr)\
-&nbsp; &nbsp; 2.2 - [qBittorrent](#2-1-qbittorrent)\
-&nbsp; &nbsp; 2.3 - [qBit VPN](#2-2-qbittorrent-vpn)\
-&nbsp; &nbsp; 2.4 - [Prowlarr VPN Indexer Proxy](#2-3-prowlarr-proxy)\
-3 - [Radarr setup](#3-radarr)\
+&nbsp; &nbsp; 1.1 - [Storage](#1-1-storage-)\
+&nbsp; &nbsp; 1.2 - [Apps](#1-2-apps-)\
+&nbsp; &nbsp; 1.3 - [Filesystem](#1-3-filesystem-)\
+&nbsp; &nbsp; 1.4 - [HeavyScript](#1-4-heavyscript-)\
+2 - [Prowlarr & qBittorrent setup (with VPN addons)](#2-prowlarr-)\
+&nbsp; &nbsp; 2.2 - [qBittorrent](#2-1-qbittorrent-)\
+&nbsp; &nbsp; 2.3 - [qBit VPN](#2-2-qbittorrent-vpn-)\
+&nbsp; &nbsp; 2.4 - [Prowlarr VPN Indexer Proxy](#2-3-prowlarr-proxy-)\
+3 - [Radarr setup](#3-radarr-)\
 4 - [Sonarr setup](#3-1-sonarr)\
 5 - [Unpackerr](#5-unpackerr)\
 6 - Emby & Jellyseer setup\
@@ -190,8 +190,7 @@ Move your cursor to the end of the IP in the address bar and hit enter to refres
 </details>
 <details><summary>
 
-### 2-2-qBittorrent-vpn 
-</summary>
+### 2-2-qBittorrent-vpn </summary>
 - Pull the required environment variables and Wireguard only variables from your chosen service provider [outlined in the guides](https://github.com/qdm12/gluetun-wiki/tree/main/setup/providers). For me this was `VPN_TYPE=wireguard`, `VPN_SERVICE_PROVIDER=windscribe`, `WIREGUARD_PRIVATE_KEY=???`, `WIREGUARD_ADDRESSES=???` and `WIREGUARD_PRESHARED_KEY=???`. We'll enter these into the Enviro variables in the Addons section of qbit.
 ![image](https://github.com/d1ddle/truenas-arr-suite/assets/69437145/d60908e6-d203-436f-8eb1-9d4961f66b6c)
 - Find qbit in **Apps** tab and click the three dots, **Edit**
