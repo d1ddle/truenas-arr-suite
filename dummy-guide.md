@@ -6,8 +6,7 @@
 
 ### A note on Piracy 🏴‍☠️
 i don't live in the united states. this is NOT a guide on how to steal things off the internet. this is a **software install guide**. dont break the law of the country u live in. youve been warned - the rest is on you. i do NOT condone piracy.
-
-***Google*** is your friend
+Google is your friend
 
 ### How itwerks
 Ultimately this server setup can show you a list of existing movies and TV shows and allow you to 'Request' them; looking across 'indexers' for the available files. If the files aren't released yet, the 'request' will wait until files are available. But it doesn't stop there, the search programs for movies (Radarr) and TV (Sonarr) have customisable quality profilings, only allowing BluRay-1080 and WEB-1080 of media, and ignoring TELESYNC and TV-SD rips for example. Then after all that, downloading metadata, seeding for a day and placing into a media folder to stream through multi-platform streaming app Emby, **all automagically**.
