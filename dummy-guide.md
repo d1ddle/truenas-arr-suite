@@ -90,14 +90,18 @@ So, pretty standard stuff so far. This is where it gets different from other beg
 Next we need to add subfolders [like in the TRaSH guide](https://trash-guides.info/Hardlinks/How-to-setup-for/Docker/#folder-structure). Books and music are optional - I won't cover the automation apps for these in this guide but they are essentially the same, since - lucky for us - they are made by the same dev team! (readarr and lidarr they're called).
 
 ```
-data
-├── torrents
-└── media
-     ├── books
-     ├── movies
-     ├── music
-     └── tv
+mnt
+└── tank
+     └── data
+          ├── vpn
+          ├── torrents
+          └── media
+               ├── books
+               ├── movies
+               ├── music
+               └── tv
 ```
+This is the folder structure we'll create.
 
 - Go to **System Settings** -> **Shell**
 
