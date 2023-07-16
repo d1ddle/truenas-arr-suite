@@ -19,7 +19,7 @@ Oh and the download client and indexers *have* to use a VPN in some countries in
 Most of the UI is self-explanatory, and when setting stuff up leave options as default unless I told you to change it. If you get stuck or get an error, post an issue and I'll happily help you solve it.
 
 **Contents**\
-1 - [Setup TrueNAS](#1-install)\
+1 - [Setup TrueNAS](#1-install-)\
 &nbsp; &nbsp; 1.1 - [Storage](#1-1-storage)\
 &nbsp; &nbsp; 1.2 - [Apps](#1-2-apps)\
 &nbsp; &nbsp; 1.3 - [Filesystem](#1-3-filesystem)\
