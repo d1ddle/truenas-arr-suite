@@ -36,7 +36,10 @@ Most of the UI is self-explanatory, and when setting stuff up leave options as d
 7 - Recyclarr setup\
 8 - Minecraft-java setup
 
-### 1-Install
+<details>
+<summary>
+  
+### 1-Install</summary>
 - Setup hardware - ideally one SSD 100GB or less as boot disk and as many HDDs as data storage. Minimum 1 HDD, Recommended 2 or more the same size for [RAID mirroring](https://www.techtarget.com/searchstorage/definition/disk-mirroring).
 - Flash [TrueNAS Scale ISO](https://www.truenas.com/download-truenas-scale/) to a USB drive using [rufus](https://rufus.ie/en/):
   - This will erase all data on the USB. Backup before continuing.
@@ -58,20 +61,30 @@ Most of the UI is self-explanatory, and when setting stuff up leave options as d
 Bear in mind this screenshot was taken from a virtual machine.
 - Shut down the system using the top right menu and put your HDD drives back into the system, then reboot.
 - Log back into the Web UI and go to **System Settings** -> **General** -> **Localization Settings** and apply the correct Timezone, Time Format and Date Format. *****This is ABSOLUTELY NECCESSARY and avoids days of headaches furthur down the line.*****
+</details>
 
-### 1-1-Storage
+<details><summary>
+  
+### 1-1-Storage</summary>
 - Head to the **Storage** tab
 - Create a new pool ideally with raid1 (single disk mirroring) or better.
 - Name the pool `tank`
+</details>
 
-### 1-2-Apps
+<details><summary>
+
+### 1-2-Apps</summary>
 - Head to the **Apps** tab and select your `tank` pool when asked where to put Apps
 - At the top navigate to **Manage Catalogs** -> **Add Catalog**
 - Name it `truecharts`, uncheck `force create`, add `https://github.com/truecharts/catalog` as the repository, ensure `stable` as the preferred trains and `main` as the branch, and Save.
 
+</details>
+
 So, pretty standard stuff so far. This is where it gets different from other beginner guides as we want our system to last more than 1 month. We are only going to create one datset so that we can use hardlinks detailed on [TRaSH guides](https://trash-guides.info/Hardlinks/How-to-setup-for/Docker/#bad-path-suggestion). 
 
-### 1-3-Filesystem
+<details><summary>
+  
+### 1-3-Filesystem</summary>
 - Head to **Storage**, select `tank` and **Add Dataset**
 - Name the dataset `data`, and leave settings default except for `Case Sensitivity` change this to `Insensitive`.
 
@@ -94,11 +107,13 @@ Now the folder structure is setup, we have to create an NFS share on the `tank` 
 
 - Go to the **Shares** tab and **Add** a new NFS Share
 - Set the path as `/mnt/tank/data` and Enable it
-- Click `Save`
+- Click Save
+</details>
 
-Now the filesystem is completely setup, we're going to install an app automation and updater tool called HeavyScript, written by TrueCharts dev and TRaSH guide writer HeavyBullets. 
+Now the filesystem is completely setup, we're going to install an app automation and updater tool called HeavyScript, written by TrueCharts dev and TRaSH guide writer HeavyBullets.
+<details><summary>
 
-### 1-4-HeavyScript
+### 1-4-HeavyScript</summary>
 - While in the Shell as root:
 - Enter `cd /`
 - Enter `curl -s https://raw.githubusercontent.com/Heavybullets8/heavy_script/main/functions/deploy.sh | bash && source "$HOME/.bashrc" 2>/dev/null && source "$HOME/.zshrc" 2>/dev/null`
@@ -114,15 +129,19 @@ Go back into the Shell as root making sure to `cd /` once in. Now we are going t
 - Run `nano ~/heavy_script/config.ini`
 - You can copy-paste [my config](https://raw.githubusercontent.com/d1ddle/truenas-arr-suite/main/heavy_script-config.ini) or [imjustleaving's config](https://user-images.githubusercontent.com/109609649/237957850-59b2b18b-56eb-4fd9-98c8-6841a65e272a.png) replacing the default one or work through the default changing the config on your own. But I recommend mine.
 - Hit **Ctrl+X**, then **y** and **enter** to save and exit into the shell.
+</details>
+<details><summary>
 
-### 2-Prowlarr
+### 2-Prowlarr</summary>
 - Navigate to **Apps** -> **Available Apps** and search `Prowlarr`
-- Click `Install` making sure you're installing the **TrueCharts** version and `Save` at the bottom without changing anything.
+- Click `Install` making sure you're installing the **TrueCharts** version and Save at the bottom without changing anything.
 ![image](https://github.com/d1ddle/truenas-arr-suite/assets/69437145/7dc0ea7b-3dd3-43ba-906e-ffa57316af64)
 Should look like this after a page refresh.
 - Click `Open` to bring up the web UI where you'll need to add indexers now. I can't tell you what to do here but it's pretty self-explanatory. Of course, YouTube and Google are your friends. We'll be back here to link the other apps.
+</details>
+<details><summary>
 
-### 2-1-qBittorrent
+### 2-1-qBittorrent</summary>
 - Navigate to **Apps** -> **Available Apps** and search `qBittorrent`
 - Click `Install` making sure you're installing the **TrueCharts** version like prowlarr. But we need to change some things before you scroll through and click save, so pay attention!
 ![image](https://github.com/d1ddle/truenas-arr-suite/assets/69437145/d6d9d78f-6ca1-4da0-8cfa-ccedefde877f)
@@ -154,9 +173,11 @@ Move your cursor to the end of the IP in the address bar and hit enter to refres
 - Go to the **BitTorrent** tab and change your settings to match these:
 ![image](https://github.com/d1ddle/truenas-arr-suite/assets/69437145/57518055-0b06-402b-ad88-0969c1bf0b89)
 - Go to the **Advanced** tab and check `Reannounce all trackers when IP or port changed`. We'll be coming back to this later to add other settings.
-- Click `Save` at the bottom of the popup (you may have to zoom out the page)
+- Click Save at the bottom of the popup (you may have to zoom out the page)
+</details>
+<details><summary>
 
-### 2-2-qBittorrent-vpn
+### 2-2-qBittorrent-vpn</summary>
 - Pull the required environment variables and Wireguard only variables from your chosen service provider [outlined in the guides](https://github.com/qdm12/gluetun-wiki/tree/main/setup/providers). For me this was `VPN_TYPE=wireguard`, `VPN_SERVICE_PROVIDER=windscribe`, `WIREGUARD_PRIVATE_KEY=???`, `WIREGUARD_ADDRESSES=???` and `WIREGUARD_PRESHARED_KEY=???`. We'll enter these into the Enviro variables in the Addons section of qbit.
 ![image](https://github.com/d1ddle/truenas-arr-suite/assets/69437145/d60908e6-d203-436f-8eb1-9d4961f66b6c)
 - Find qbit in **Apps** tab and click the three dots, **Edit**
@@ -170,14 +191,16 @@ Move your cursor to the end of the IP in the address bar and hit enter to refres
 - Now, time to add enviro variables. VPN Config File Location is not necessary, we will be using environment variables instead, so leave it blank
 - **Add** a new VPN Enviro Variable, and input all required Environment variables and Wireguard only variables and their values into this part.
 ![image](https://github.com/d1ddle/truenas-arr-suite/assets/69437145/35ef1e9e-b4fa-4475-aefe-fcdefa5f2581)
-And so on. When done `Save`.
+And so on. When done Save.
 
 Now we can go back into the qBit UI and change our Network settings.
 - In **Tools** -> **Options** -> **Advanced**, change the `Network Interface` to `tun0`, short for Gluetun, the name of the VPN addon.
 - This settings page should now match mine.
 ![image](https://github.com/d1ddle/truenas-arr-suite/assets/69437145/8878a921-6d7b-4472-ad2a-3fc626e8e075)
+</details>
+<details><summary>
 
-### 2-3-Prowlarr-Proxy
+### 2-3-Prowlarr-Proxy</summary>
 The VPN Indexer proxy for prowlarr will use the same addon Gluetun from the setup above, so make sure you've completed that first. This is all also written [in TrueCharts' guide](https://truecharts.org/manual/SCALE/guides/vpn-setup/#proxy-example)
 
 - Under **Addon Environment Variables** while editing the qBittorrent app settings, add `HTTPPROXY=on` and `HTTPPROXY_LOG=on`
@@ -192,18 +215,19 @@ The VPN Indexer proxy for prowlarr will use the same addon Gluetun from the setu
 ![image](https://github.com/d1ddle/truenas-arr-suite/assets/69437145/8f158948-4fcd-44b0-a4ef-038afc1a6fd8)
 ![image](https://github.com/d1ddle/truenas-arr-suite/assets/69437145/95379e0d-5064-48ab-afe2-d95450d96dcd)
 
-Click `Save`
+Click Save
 
 Now we can add this to Prowlarr.
 - Under **Settings** -> **Indexers** -> **Add [Indexer Proxies]** in the Prowlarr UI, select `Http`, called `GluetunProxy`
 - Add `proxy` to the tags
 - Host should be `qbittorrent-proxy.ix-qbittorrent.svc.cluster.local` if you installed Gluetun on qbittorrent like here
 - Port: `8888`
-- Click `Test` to confirm the connection and click `Save`
+- Click `Test` to confirm the connection and click Save
 ![image](https://github.com/d1ddle/truenas-arr-suite/assets/69437145/986040c4-6fc2-47a1-a16a-5e7fd1fa2006)
+</details>
 
 ### 3-Radarr
-Our first automation app. The install process for radarr is the same as qbittorrent. Don't forget to add our `/mnt/tank/data` dataset in **Storage and Persistence** and Save.
+Our first automation app. The install process for radarr is the same as qbittorrent. We only need to add our `/mnt/tank/data` dataset in **Storage and Persistence** and Save, the rest remains the same.
 - Open radarr and be greeted with this screen:
 ![image](https://github.com/d1ddle/truenas-arr-suite/assets/69437145/b0e4514b-8bf9-4b2f-bf70-09cf575ad649)
 
@@ -238,15 +262,17 @@ Now we'll add a root folder to radarr.
 #### Next you could change these following settings to match mine which optimise the whole system, but are optional. A note on **Minimum Free Space** follows.
 
 <details>
-  <summary>Optimal **Media Management** Settings</summary>
+  <summary>Optimal <b>Media Management</b> Settings</summary>
   ![192 168 1 239_7878_settings_mediamanagement (1)](https://github.com/d1ddle/truenas-arr-suite/assets/69437145/741b5b04-239e-42bb-869c-307f8b009742)
 </details>
 <details>
-  <summary>**Media Management** Text instructions</summary>
-* Scroll to **Folders** and check **Delete empty folders**
-  - Scroll to **Importing** and set the **Minimum Free Space**. I set mine to a quarter of my total HDD space, which is 116438 MB (117GB). This will pause/prevent downloads until more space is avilable on the disk, preventing complete filling of disk space which could render the server unusable/too slow.
-  - Check **Use Hardlinks instead of Copy**
-  - Check **Import Extra Files** and add `srt` and other subtitle formats in your existing library.
+<summary><b>Media Management</b> Text instructions</summary>
+<ul>
+<li>Scroll to <b>Folders</b> and check <b>Delete empty folders</b></li>
+<li>Scroll to <b>Importing</b> and set the <b>Minimum Free Space</b>. I set mine to a quarter of my total HDD space, which is 116438 MB (117GB). This will pause/prevent downloads until more space is avilable on the disk, preventing complete filling of disk space which could render the server unusable/too slow.</li>
+<li>Check <b>Use Hardlinks instead of Copy</b></li>
+<li>Check <b>Import Extra Files</b> and add `srt` and other subtitle formats in your existing library.</li>
+</ul>
 </details>
 
 - Go back to **Download Clients** and Enable **Completed Download Handling**, set Interval to 1 minute
