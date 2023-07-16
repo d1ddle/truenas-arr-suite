@@ -87,7 +87,17 @@ So, pretty standard stuff so far. This is where it gets different from other beg
 - Head to **Storage**, select `tank` and **Add Dataset**
 - Name the dataset `data`, and leave settings default except for `Case Sensitivity` change this to `Insensitive`.
 
-Next we need to add subfolders [like in the TRaSH guide](https://trash-guides.info/Hardlinks/How-to-setup-for/Docker/#folder-structure).
+Next we need to add subfolders [like in the TRaSH guide](https://trash-guides.info/Hardlinks/How-to-setup-for/Docker/#folder-structure). Books and music are optional - I won't cover the automation apps for these in this guide but they are essentially the same, since - lucky for us - they are made by the same dev team! (readarr and lidarr they're called).
+
+```
+data
+├── torrents
+└── media
+     ├── books
+     ├── movies
+     ├── music
+     └── tv
+```
 
 - Go to **System Settings** -> **Shell**
 
