@@ -29,11 +29,12 @@ Most of the UI is self-explanatory, and when setting stuff up leave options as d
 &nbsp; &nbsp; 2.2 - [qBittorrent](#2-1-qbittorrent)\
 &nbsp; &nbsp; 2.3 - [qBit VPN](#2-2-qbittorrent-vpn)\
 &nbsp; &nbsp; 2.4 - [Prowlarr VPN Indexer Proxy](#2-3-prowlarr-proxy)\
-3 - Radarr and Sonarr setup\
-4 - Unpackerr\
-5 - Emby & Jellyseer setup\
-6 - Recyclarr setup\
-7 - Minecraft-java setup
+3 - [Radarr setup](#3-radarr)\
+4 - [Sonarr setup](#3-1-sonarr)\
+5 - [Unpackerr](#5-unpackerr)\
+6 - Emby & Jellyseer setup\
+7 - Recyclarr setup\
+8 - Minecraft-java setup
 
 ### 1-Install
 - Setup hardware - ideally one SSD 100GB or less as boot disk and as many HDDs as data storage. Minimum 1 HDD, Recommended 2 or more the same size for [RAID mirroring](https://www.techtarget.com/searchstorage/definition/disk-mirroring).
@@ -142,7 +143,7 @@ Then Save.
  
 ![image](https://github.com/d1ddle/truenas-arr-suite/assets/69437145/e28d8a45-0599-4fb1-88ef-5d5f3560bf1c)
 
-Move your cursor to the end of the IP in the address bar and hit enter to refresh. Now enter the default username **admin** and password **adminadmin**
+Move your cursor to the end of the IP in the address bar and hit enter to refresh. Now enter the default username `admin` and password `adminadmin`
 
 ![image](https://github.com/d1ddle/truenas-arr-suite/assets/69437145/c7fd6ab0-6e2c-40da-929a-da10626a76f2)
 
@@ -198,8 +199,60 @@ Now we can add this to Prowlarr.
 - Add `proxy` to the tags
 - Host should be `qbittorrent-proxy.ix-qbittorrent.svc.cluster.local` if you installed Gluetun on qbittorrent like here
 - Port: `8888`
+- Click `Test` to confirm the connection and click `Save`
+![image](https://github.com/d1ddle/truenas-arr-suite/assets/69437145/986040c4-6fc2-47a1-a16a-5e7fd1fa2006)
 
-### 4-Unpackerr
+### 3-Radarr
+Our first automation app. The install process for radarr is the same as qbittorrent. Don't forget to add our `/mnt/tank/data` dataset in **Storage and Persistence** and Save.
+- Open radarr and be greeted with this screen:
+![image](https://github.com/d1ddle/truenas-arr-suite/assets/69437145/b0e4514b-8bf9-4b2f-bf70-09cf575ad649)
+
+We'll connect qbit download client first.
+- Go to **Settings** -> **Download Clients**, check **Show Advanced** at the top bar and hit the big "+"
+- Select qBittorrent from the bottom right and enter the correct information for your system
+&nbsp; &nbsp; - Note a few changes: Under Host you need to type the IP you see in your URL bar when you open the qbit web UI. The default port should be 10095. Remember the username is `admin` and the password is `adminadmin` unless you changed it.
+- Check **Remove Completed** under **Completed Download Handling**
+- Leave everything else the same.
+- Click Test, Save.
+You should now see this:
+![image](https://github.com/d1ddle/truenas-arr-suite/assets/69437145/292fc736-1e99-4c7f-bd99-2d22c9c8e38e)
+You'll have to repeat this process when you set up a new automation app (aka an Arr/Starr/Servarr App like Sonarr or Readarr).
+
+Now we'll connect prowlarr to radarr. 
+- Open prowlarr in a new tab and go to **Settings** -> **Apps** and click "+"
+- Under **Applications**, pick Radarr.
+- Change the settings to match mine except for the API key which you get from radarr in **Settings** -> **General** and the IP (mine's `192.168.1.239`) which you can find in your address bar when in the web UI in either app. Note that the ports should remain the same as mine for each app (`:9696` for prowlarr, `:7878` for radarr).
+Finding the API Key:
+![image](https://github.com/d1ddle/truenas-arr-suite/assets/69437145/78e0974c-69eb-45e9-9978-8326ddc2555e)
+Entering the Application info in prowlarr:
+![image](https://github.com/d1ddle/truenas-arr-suite/assets/69437145/f0032bf9-dfa7-40c8-b092-7cbeb31bfc82)
+tl;dr Make it look like this, only with your IP and ApiKey.
+- Test and Save.
+You'll have to repeat this when setting up Sonarr.
+
+Now we'll add a root folder to radarr.
+- Go to **Settings** -> **Media Management**, scroll to **Root Folders**
+- **Add Root Folder** and select **/data/media/movies**
+- Scroll to **Movie Renaming** and check **Rename Movies** and **Replace Illegal Characters**
+ 
+#### Next you could change these following settings to match mine which optimise the whole system, but are optional. A note on **Minimum Free Space** follows.
+
+<details>
+  <summary>Optimal **Media Management** Settings</summary>
+  ![192 168 1 239_7878_settings_mediamanagement (1)](https://github.com/d1ddle/truenas-arr-suite/assets/69437145/741b5b04-239e-42bb-869c-307f8b009742)
+</details>
+<details>
+  <summary>**Media Management** Text instructions</summary>
+* Scroll to **Folders** and check **Delete empty folders**
+  - Scroll to **Importing** and set the **Minimum Free Space**. I set mine to a quarter of my total HDD space, which is 116438 MB (117GB). This will pause/prevent downloads until more space is avilable on the disk, preventing complete filling of disk space which could render the server unusable/too slow.
+  - Check **Use Hardlinks instead of Copy**
+  - Check **Import Extra Files** and add `srt` and other subtitle formats in your existing library.
+</details>
+
+- Go back to **Download Clients** and Enable **Completed Download Handling**, set Interval to 1 minute
+- Check **Redownload** under **Failed Download Handling**.
+
+### 5-Unpackerr
 Install from TrueCharts. In the Extra Environment variables, add the following with changes to the API keys and URLs to suit your system:
 
 `UN_SONARR_0_URL`
