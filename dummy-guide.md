@@ -29,8 +29,8 @@ Most of the UI is self-explanatory, and when setting stuff up leave options as d
 &nbsp; &nbsp; 2.3 - [qBit VPN](#2-2-qbittorrent-vpn-)\
 &nbsp; &nbsp; 2.4 - [Prowlarr VPN Indexer Proxy](#2-3-prowlarr-proxy-)\
 3 - [Radarr setup](#3-radarr-)\
-4 - [Sonarr setup](#3-1-sonarr)\
-5 - [Unpackerr](#5-unpackerr)\
+4 - [Sonarr setup](#3-1-sonarr-)\
+5 - [Unpackerr](#5-unpackerr-)\
 6 - Emby & Jellyseer setup\
 7 - Recyclarr setup\
 8 - Minecraft-java setup
@@ -56,7 +56,9 @@ Most of the UI is self-explanatory, and when setting stuff up leave options as d
   - Select `Create Swap` partition if you are asked
   - Select `Boot via UEFI` at the Boot Mode prompt
 - Once rebooted and logged in, you should see the following.
+
 ![image](https://github.com/d1ddle/truenas-arr-suite/assets/69437145/87e3eeb7-906f-467b-b89c-e941c1ce702d)
+
 Bear in mind this screenshot was taken from a virtual machine.
 - Shut down the system using the top right menu and put your HDD drives back into the system, then reboot.
 - Log back into the Web UI and go to **System Settings** -> **General** -> **Localization Settings** and apply the correct Timezone, Time Format and Date Format. *****This is ABSOLUTELY NECCESSARY and avoids days of headaches furthur down the line.*****
@@ -148,7 +150,9 @@ Go back into the Shell as root making sure to `cd /` once in. Now we are going t
 ### 2-Prowlarr </summary>
 - Navigate to **Apps** -> **Available Apps** and search `Prowlarr`
 - Click `Install` making sure you're installing the **TrueCharts** version and Save at the bottom without changing anything.
+
 ![image](https://github.com/d1ddle/truenas-arr-suite/assets/69437145/7dc0ea7b-3dd3-43ba-906e-ffa57316af64)
+
 Should look like this after a page refresh.
 - Click `Open` to bring up the web UI where you'll need to add indexers now. I can't tell you what to do here but it's pretty self-explanatory. Of course, YouTube and Google are your friends. We'll be back here to link the other apps.
 </details>
@@ -157,7 +161,9 @@ Should look like this after a page refresh.
 ### 2-1-qBittorrent </summary>
 - Navigate to **Apps** -> **Available Apps** and search `qBittorrent`
 - Click `Install` making sure you're installing the **TrueCharts** version like prowlarr. But we need to change some things before you scroll through and click save, so pay attention!
+
 ![image](https://github.com/d1ddle/truenas-arr-suite/assets/69437145/d6d9d78f-6ca1-4da0-8cfa-ccedefde877f)
+
 - In **Storage and Persistence**, make sure the **Type of Storage** is `PVC (simple)` and Read Only is unchecked.
 - Still in the Storage section, click **Add** in **Configure Additional App Storage** and add the NFS data share we created earlier with the following options:
     - Type of Storage: NFS Share
@@ -180,11 +186,17 @@ Move your cursor to the end of the IP in the address bar and hit enter to refres
 ![image](https://github.com/d1ddle/truenas-arr-suite/assets/69437145/c7fd6ab0-6e2c-40da-929a-da10626a76f2)
 
 - Go to **Tools** -> **Options** -> **Downloads** and change the settings to the following:
+
 ![image](https://github.com/d1ddle/truenas-arr-suite/assets/69437145/59129186-1f1f-4c2d-a960-767863d8b1b7)
+
 - Go to the **Connection** tab and change your settings to match these, except leave alone your Listening Port:
+
 ![image](https://github.com/d1ddle/truenas-arr-suite/assets/69437145/9ac457a1-0f4d-4655-837d-c0ea2b0829e1)
+
 - Go to the **BitTorrent** tab and change your settings to match these:
+
 ![image](https://github.com/d1ddle/truenas-arr-suite/assets/69437145/57518055-0b06-402b-ad88-0969c1bf0b89)
+
 - Go to the **Advanced** tab and check `Reannounce all trackers when IP or port changed`. We'll be coming back to this later to add other settings.
 - Click Save at the bottom of the popup (you may have to zoom out the page)
 </details>
@@ -192,24 +204,34 @@ Move your cursor to the end of the IP in the address bar and hit enter to refres
 
 ### 2-2-qBittorrent-vpn </summary>
 - Pull the required environment variables and Wireguard only variables from your chosen service provider [outlined in the guides](https://github.com/qdm12/gluetun-wiki/tree/main/setup/providers). For me this was `VPN_TYPE=wireguard`, `VPN_SERVICE_PROVIDER=windscribe`, `WIREGUARD_PRIVATE_KEY=???`, `WIREGUARD_ADDRESSES=???` and `WIREGUARD_PRESHARED_KEY=???`. We'll enter these into the Enviro variables in the Addons section of qbit.
+
 ![image](https://github.com/d1ddle/truenas-arr-suite/assets/69437145/d60908e6-d203-436f-8eb1-9d4961f66b6c)
+
 - Find qbit in **Apps** tab and click the three dots, **Edit**
+
 ![image](https://github.com/d1ddle/truenas-arr-suite/assets/69437145/b7404ee0-f652-45ec-94e6-ba04a9bc9795)
+
 - Scroll all the way down to VPN and change the type to **Gluetun**, **Enabling Killswitch**.
 - Click **Add** and enter your local IPv4 network to exclude from the VPN Killswitch, eg; my TrueNAS IP is 192.168.1.271
 - My local IPv4 network to exclude would be 192.168.1.0/24
 - Take of the last set of digits and replace it with 0/24; `In almost all situations the Network ID will end in a .0 (ie. 192.168.0.0, 10.0.0.0, 172.16.0.0) and the CIDR will be /24. If you fill this entry out incorrectly Gluetun will fail to start and the application it is attached to will fail to start.`
 - If confused, look at the [Gluetun setup](https://truecharts.org/manual/SCALE/guides/vpn-setup/#wireguard-example), you shouldn't have an IPv6 network since the Arrs don't properly support it yet.
+
 ![image](https://github.com/d1ddle/truenas-arr-suite/assets/69437145/3253b880-5f46-4a97-94fe-2d96ea6d9c5d)
+
 - Now, time to add enviro variables. VPN Config File Location is not necessary, we will be using environment variables instead, so leave it blank
 - **Add** a new VPN Enviro Variable, and input all required Environment variables and Wireguard only variables and their values into this part.
+
 ![image](https://github.com/d1ddle/truenas-arr-suite/assets/69437145/35ef1e9e-b4fa-4475-aefe-fcdefa5f2581)
+
 And so on. When done Save.
 
 Now we can go back into the qBit UI and change our Network settings.
 - In **Tools** -> **Options** -> **Advanced**, change the `Network Interface` to `tun0`, short for Gluetun, the name of the VPN addon.
 - This settings page should now match mine.
+
 ![image](https://github.com/d1ddle/truenas-arr-suite/assets/69437145/8878a921-6d7b-4472-ad2a-3fc626e8e075)
+
 </details>
 <details><summary>
 
@@ -217,7 +239,8 @@ Now we can go back into the qBit UI and change our Network settings.
 The VPN Indexer proxy for prowlarr will use the same addon Gluetun from the setup above, so make sure you've completed that first. This is all also written [in TrueCharts' guide](https://truecharts.org/manual/SCALE/guides/vpn-setup/#proxy-example)
 
 - Under **Addon Environment Variables** while editing the qBittorrent app settings, add `HTTPPROXY=on` and `HTTPPROXY_LOG=on`
-- ![image](https://github.com/d1ddle/truenas-arr-suite/assets/69437145/eccf44d4-0271-45df-a7e4-7b7743b30f44)
+
+![image](https://github.com/d1ddle/truenas-arr-suite/assets/69437145/eccf44d4-0271-45df-a7e4-7b7743b30f44)
 
 - Under **Networking and Services** while editing the qBittorrent app settings, check `Show Expert Config` underneath **TCP Service Port Configuration**.
 - **Add** a new **Manual Custom Service** called `proxy`
@@ -226,6 +249,7 @@ The VPN Indexer proxy for prowlarr will use the same addon Gluetun from the setu
 - **Add** an **Additional Service Port** called `proxy`, setting the **Port Type** to `HTTP`, and both **Target** and **Container** Ports to `8888`.
 
 ![image](https://github.com/d1ddle/truenas-arr-suite/assets/69437145/8f158948-4fcd-44b0-a4ef-038afc1a6fd8)
+
 ![image](https://github.com/d1ddle/truenas-arr-suite/assets/69437145/95379e0d-5064-48ab-afe2-d95450d96dcd)
 
 Click Save
@@ -236,13 +260,16 @@ Now we can add this to Prowlarr.
 - Host should be `qbittorrent-proxy.ix-qbittorrent.svc.cluster.local` if you installed Gluetun on qbittorrent like here
 - Port: `8888`
 - Click `Test` to confirm the connection and click Save
+
 ![image](https://github.com/d1ddle/truenas-arr-suite/assets/69437145/986040c4-6fc2-47a1-a16a-5e7fd1fa2006)
+
 </details>
 <details><summary>
 
 ### 3-Radarr </summary>
 Our first automation app. The install process for radarr is the same as qbittorrent. We only need to add our `/mnt/tank/data` dataset in **Storage and Persistence** and Save, the rest remains the same.
 - Open radarr and be greeted with this screen:
+
 ![image](https://github.com/d1ddle/truenas-arr-suite/assets/69437145/b0e4514b-8bf9-4b2f-bf70-09cf575ad649)
 
 We'll connect qbit download client first.
@@ -253,7 +280,9 @@ We'll connect qbit download client first.
 - Leave everything else the same.
 - Click Test, Save.
 You should now see this:
+
 ![image](https://github.com/d1ddle/truenas-arr-suite/assets/69437145/292fc736-1e99-4c7f-bd99-2d22c9c8e38e)
+
 You'll have to repeat this process when you set up a new automation app (aka an Arr/Starr/Servarr App like Sonarr or Readarr).
 
 Now we'll connect prowlarr to radarr. 
@@ -261,9 +290,13 @@ Now we'll connect prowlarr to radarr.
 - Under **Applications**, pick Radarr.
 - Change the settings to match mine except for the API key which you get from radarr in **Settings** -> **General** and the IP (mine's `192.168.1.239`) which you can find in your address bar when in the web UI in either app. Note that the ports should remain the same as mine for each app (`:9696` for prowlarr, `:7878` for radarr).
 Finding the API Key:
+
 ![image](https://github.com/d1ddle/truenas-arr-suite/assets/69437145/78e0974c-69eb-45e9-9978-8326ddc2555e)
+
 Entering the Application info in prowlarr:
+
 ![image](https://github.com/d1ddle/truenas-arr-suite/assets/69437145/f0032bf9-dfa7-40c8-b092-7cbeb31bfc82)
+
 tl;dr Make it look like this, only with your IP and ApiKey.
 - Test and Save.
 You'll have to repeat this when setting up Sonarr.
@@ -305,8 +338,33 @@ Once you've finished setting up Custom Formats and Quality Profiles, I will guid
 
 This is Radarr done! Onto Sonarr...
 </details>
+<details><summary>
 
-### 5-Unpackerr
+### 4-Sonarr </summary>
+Good news, the same dev team that wrote Radarr wrote Sonarr. It both looks the same and installs the same as Radarr, so follow the same steps above and install Sonarr, then go into prowlarr and add it as an application, like before but using your Sonarr API key and Sonarr port (`:8989`). Don't forget to add your root folder as `/data/media/tv`.
+
+Unfortunately Sonarr doesn't have Custom Profiles so we'll use Regex to exclude unwanted content.
+- Goto **Settings** -> **Profiles** and look for **Release Profiles**
+- Click "+" and add this line to **Must Not Contain**, [(more info here)](https://trash-guides.info/Sonarr/Sonarr-Release-Profile-RegEx/#golden-rule):
+
+`/^(?=.*(1080|720))(?=.*((x|h)[ ._-]?265|hevc)).*/i`
+
+Now it should look like this:
+
+![image](https://github.com/d1ddle/truenas-arr-suite/assets/69437145/2f815592-9da2-4b96-9f4b-691d87e64828)
+
+Do this again but "+" a **Must Not Contain** for **Dolby Vision without HDR10 fallback**
+
+`/^(?!.*(HDR|HULU|REMUX))(?=.*\b(DV|Dovi|Dolby[- .]?Vision)\b).*/i`
+
+And should now look like this:
+
+![image](https://github.com/d1ddle/truenas-arr-suite/assets/69437145/8fa9a1d0-dd5a-446a-80d3-982ffe2b693b)
+
+</details>
+<details><summary>
+
+### 5-Unpackerr </summary>
 Install from TrueCharts. In the Extra Environment variables, add the following with changes to the API keys and URLs to suit your system:
 
 `UN_SONARR_0_URL`
@@ -323,6 +381,8 @@ Install from TrueCharts. In the Extra Environment variables, add the following w
 `/data/torrents/movies`
 
 Each entry should look something like this:
+
 ![image](https://github.com/d1ddle/truenas-arr-suite/assets/69437145/a04971e7-cb16-40d6-9515-0d88be15567b)
 
 Click Save. That's unpackerr sorted.
+</details>
