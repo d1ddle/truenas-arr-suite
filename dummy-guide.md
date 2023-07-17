@@ -347,7 +347,9 @@ Unfortunately Sonarr doesn't have Custom Profiles so we'll use Regex to exclude 
 - Goto **Settings** -> **Profiles** and look for **Release Profiles**
 - Click "+" and add this line to **Must Not Contain**, [(more info here)](https://trash-guides.info/Sonarr/Sonarr-Release-Profile-RegEx/#golden-rule):
 
-```/^(?=.*(1080|720))(?=.*((x|h)[ ._-]?265|hevc)).*/i```
+```
+/^(?=.*(1080|720))(?=.*((x|h)[ ._-]?265|hevc)).*/i
+```
 
 Now it should look like this:
 
@@ -355,7 +357,9 @@ Now it should look like this:
 
 Do this again but "+" a **Must Not Contain** for **Dolby Vision without HDR10 fallback**
 
-```/^(?!.*(HDR|HULU|REMUX))(?=.*\b(DV|Dovi|Dolby[- .]?Vision)\b).*/i```
+```
+/^(?!.*(HDR|HULU|REMUX))(?=.*\b(DV|Dovi|Dolby[- .]?Vision)\b).*/i
+```
 
 And should now look like this:
 
