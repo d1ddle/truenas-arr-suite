@@ -4,6 +4,10 @@
 
 ##### This might be overwhelming at first. Don't panic, take a deep breath, grab a cola and be prepared to read. I want to make this as painless as possible for you. It was a nightmare for me. It is REALLY useful though, tank you TNAS. Don't forget, you can always ask for help in the ServArr suite and TrueNAS discord servers, I'm sure they'd be happy to help provided the right information.
 
+#### Credits
+Structure and explain paragraphs [lifted from user imjustleaving](https://github.com/imjustleaving/trueNAS/wiki/A-Guide-to-go-from-a-bare-metal-TrueNAS-Scale-install-to-a-Fully-Automated-Media-Server). Their guide is amazing but misses a few details and wasn't tested after writing to check that it works, you can actually see problems I encountered posted in the issues.
+TrueNAS wiki, TrueCharts wiki, Trash guides
+
 ### A note on Piracy 🏴‍☠️
 i don't live in the united states. this is NOT a guide on how to steal things off the internet. this is a **software install guide**. dont break the law of the country u live in. youve been warned - the rest is on you. i do NOT condone piracy.
 Google is your friend
@@ -366,6 +370,9 @@ And should now look like this:
 ![image](https://github.com/d1ddle/truenas-arr-suite/assets/69437145/8fa9a1d0-dd5a-446a-80d3-982ffe2b693b)
 
 </details>
+
+We need unpackerr bc sometimes we get downloads which are packaged as .rar in a bunch of files with no video file at all. These are broken up that way so they can be downloaded faster and re-packaged upon completion, which breaks our full automation.
+
 <details><summary>
 
 ### 5-Unpackerr </summary>
