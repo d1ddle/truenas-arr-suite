@@ -17,7 +17,7 @@ Ultimately this server setup can show you a list of existing movies and TV shows
 
 Here's an [overview of each app we are going to use](https://github.com/imjustleaving/trueNAS/wiki/A-Guide-to-go-from-a-bare-metal-TrueNAS-Scale-install-to-a-Fully-Automated-Media-Server#overview). Ignore Plex, Jellyfin, Traefik and Flaresolverr
 
-Oh and the download client and indexers *have* to use a VPN in some countries including India and the UK because most internet providers block them, so you need a [TrueNAS-WireGuard compatible VPN](https://github.com/qdm12/gluetun-wiki/tree/main/setup/providers) to a country like Sweden. I use [Windscribe](https://windscribe.com/), £40/year, 100+ global servers, I love em. Heard Mullvad VPN is pretty good too.
+Oh and the download client and indexers *have* to use a VPN in some countries including India and the UK because most internet providers block them, so you need a [TrueNAS-WireGuard compatible VPN](https://github.com/qdm12/gluetun-wiki/tree/main/setup/providers) to a country like Sweden. Don't worry, I'll guide you through setup. I use [Windscribe](https://windscribe.com/), £40/year, 100+ global servers, I love em. Heard Mullvad VPN is pretty good too.
 
 ### An important note before starting
 Most of the UI is self-explanatory, and when setting stuff up leave options as default unless I told you to change it. If you get stuck or get an error, post an issue and I'll happily help you solve it.
