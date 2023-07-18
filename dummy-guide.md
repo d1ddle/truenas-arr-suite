@@ -454,15 +454,9 @@ Install process is the same as emby, but we need to change a **Container Configu
 
 </details>
 
-<details><summary>
-  
-### [8-Recyclarr </summary>](https://github.com/imjustleaving/trueNAS/wiki/A-Guide-to-go-from-a-bare-metal-TrueNAS-Scale-install-to-a-Fully-Automated-Media-Server#recyclarr)
-</details>
+### [8-Recyclarr ](https://github.com/imjustleaving/trueNAS/wiki/A-Guide-to-go-from-a-bare-metal-TrueNAS-Scale-install-to-a-Fully-Automated-Media-Server#recyclarr)
 
-<details><summary>
-
-### 9-Traefik </summary>
-</details>
+### [9-Traefik ](https://github.com/imjustleaving/trueNAS/wiki/A-Guide-to-go-from-a-bare-metal-TrueNAS-Scale-install-to-a-Fully-Automated-Media-Server#remote-access-with-traefik)
 
 <details><summary>
 
