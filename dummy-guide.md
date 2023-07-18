@@ -6,7 +6,7 @@
 
 #### Credits
 Structure and explain paragraphs [lifted from user imjustleaving](https://github.com/imjustleaving/trueNAS/wiki/A-Guide-to-go-from-a-bare-metal-TrueNAS-Scale-install-to-a-Fully-Automated-Media-Server). Their guide is amazing but misses a few details and wasn't tested after writing to check that it works, you can actually see problems I encountered posted in the issues.
-TrueNAS wiki, TrueCharts wiki, Trash guides
+[TrueNAS docs](https://www.truenas.com/docs/), [TrueCharts docs](https://truecharts.org/manual/SCALE/guides/getting-started), [Trash guides](https://trash-guides.info/Hardlinks/How-to-setup-for/Docker/)
 
 ### A note on Piracy 🏴‍☠️
 i don't live in the united states. this is NOT a guide on how to steal things off the internet. this is a **software install guide**. dont break the law of the country u live in. youve been warned - the rest is on you. i do NOT condone piracy.
@@ -463,3 +463,8 @@ Install process is the same as emby, but we need to change a **Container Configu
 
 ### 10-Minecraft </summary>
 </details>
+
+That's it really! there's so much potential for this kind of setup and should last you a long while before issues. open an issue if you find a problem and submit a pull request if you want to add/fix something
+
+<details><summary>
+Enjoy doing what you want</summary> ('cos a P1rate is free, you are a P1rate!)</details>
