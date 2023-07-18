@@ -35,9 +35,11 @@ Most of the UI is self-explanatory, and when setting stuff up leave options as d
 3 - [Radarr setup](#3-radarr-)\
 4 - [Sonarr setup](#3-1-sonarr-)\
 5 - [Unpackerr](#5-unpackerr-)\
-6 - Emby & Jellyseer setup\
-7 - Recyclarr setup\
-8 - Minecraft-java setup
+6 - [Emby setup](#6-emby-)\
+7 - [Jellyseer setup](#7-jellyseer-)\
+8 - [Recyclarr setup](#8-recyclarr)\
+9 - [Traefik remote access](#9-traefik-)\
+10 - [Minecraft-java setup](#10-minecraft-)
 
 <details>
 <summary>
@@ -395,5 +397,69 @@ Each entry should look something like this:
 
 ![image](https://github.com/d1ddle/truenas-arr-suite/assets/69437145/a04971e7-cb16-40d6-9515-0d88be15567b)
 
+Don't forget to map our dataset in **Storage and Persistence** like we've done previously.
+
 Click Save. That's unpackerr sorted.
+</details>
+
+<details><summary>
+
+### 6-Emby </summary>
+The install process for Emby is the same as qbittorrent, radarr and sonarr. We only need to add our `/mnt/tank/data` dataset in **Storage and Persistence** and Save, the rest remains the same.
+
+Remember to install the TrueCharts App!
+
+![image](https://github.com/d1ddle/truenas-arr-suite/assets/69437145/9873a21c-b974-496a-8b35-a3a2d4c4cf3a)
+
+- Launch Emby set display language, username and password
+- Click "+" a new **Setup Media Libraries**
+- Set the Content Type to match the folder, eg `/data/media/tv` is the TV type.
+- Do this for every media type you've got. Change any other settings you see fit; most of them are self explanatory. It should now resemble this:
+
+![image](https://github.com/d1ddle/truenas-arr-suite/assets/69437145/6620b0bc-6610-4313-b81e-c9f105e729d6)
+
+- Note that you'll see a light theme and you won't see posters for media unless you moved media into your folder structure yet.
+- Click through the rest changing settings if you need and login.
+- Goto **Dashboard** and restart hte emby server to complete install.
+- Close tab and reopen in a minute.
+- Now you can peruse emby's endless customisability and tweak settings to your own.
+- You can access the media from the WEB gui on <yourIP>:10079 or <yourIP>:8096 or entering this IP and port into an emby app.
+
+</details
+
+<details><summary>
+  
+### 7-Jellyseer </summary>
+You don't need Jellyseer but it's really cool and convenient.
+Install process is the same as emby, but we need to change a **Container Configuration** setting
+- Goto the **JELLYFIN_TYPE** in **Container Configuration** and change this to `emby`.
+- Mount the dataset as usual just like we've done 3 times before and Save.
+
+- Launch Jellyseer and select **Sign in with emby** on the login page
+- Enter your emby <IP>:<Port> and use your emby username and password to sign in
+- Email is irrelevant fake if you want
+- Click the button to **Sync Libraries** and enable Movies and Shows.
+- Click **Start Scan**
+
+- Now we need to add Radarr and Sonarr servers - this is really similar to setting up prowlarr applications.
+- Check the box for **Default Server** and untick **4K Server**; That is for people who run one copy of radarr for 4k and another for 1080p content.
+- Enter your Ip and Api Keys
+- After this click **Test** to populate **Quality Profile** and **Root Folder**
+- **Add Server** and you're done, add radarr and sonarr same ways, change any settings you see fit forr your system.
+
+</details>
+
+<details><summary>
+  
+### [8-Recyclarr </summary>](https://github.com/imjustleaving/trueNAS/wiki/A-Guide-to-go-from-a-bare-metal-TrueNAS-Scale-install-to-a-Fully-Automated-Media-Server#recyclarr)
+</details>
+
+<details><summary>
+
+### 9-Traefik </summary>
+</details>
+
+<details><summary>
+
+### 10-Minecraft </summary>
 </details>
