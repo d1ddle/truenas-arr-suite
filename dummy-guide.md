@@ -425,7 +425,7 @@ Remember to install the TrueCharts App!
 - Now you can peruse emby's endless customisability and tweak settings to your own.
 - You can access the media from the WEB gui on <yourIP>:10079 or <yourIP>:8096 or entering this IP and port into an emby app.
 
-</details
+</details>
 
 <details><summary>
   
