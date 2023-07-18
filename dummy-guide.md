@@ -129,6 +129,11 @@ Now the folder structure is setup, we have to create an NFS share on the `tank` 
 - Go to the **Shares** tab and **Add** a new NFS Share
 - Set the path as `/mnt/tank/data` and Enable it
 - Click Save
+
+- **Add** a new SMB Share
+- Set the path as `mnt/tank/data` and Enable it
+- Click Save
+
 </details>
 
 Now the filesystem is completely setup, we're going to install an app automation and updater tool called HeavyScript, written by TrueCharts dev and TRaSH guide writer HeavyBullets.
@@ -462,6 +467,33 @@ Install process is the same as emby, but we need to change a **Container Configu
 <details><summary>
 
 ### 10-Minecraft </summary>
+I'm going to guide you on creating a minecraft server you and your friends can join from on both Java and Bedrock, running alongside this Arr suite! :D
+Install the TrueCharts `minecraft-java` app in a similar way to the others. Don't forget to add the storage dataset in **Storage and Persistence**, but this time we'll add it to `/mnt/tank/data/minecraft`. Note there are some changes to make in the install gui:
+
+- Add an **RCON password** and tick the **Minecraft Eula**
+- Change the server type to `Paper`. It will download and setup a paper `server.jar`
+- Add your minecraft user as OP (operator)
+- Change any extra world settings you need to
+- Set **Port** and **Query Service Port Configuration** under **Main Service Port Configuration** to `25565`
+- Set **RCON Service Port** to `25575`
+- Tick **Show Expert config**
+- Add a **New Manual Custom Service** called `geyser-bedrock`
+- Add an **Additional Service Port** called `geyser-bedrock` with a `UDP` port type
+- Set both **Target** and **Container Ports** to `19132` and Save
+
+When the Container starts, go into its shell via PuTTY by running `heavyscript` as root and selecting Application options to open the container shell.
+
+- `cd data/plugins`
+- Use `wget` to download both up-to-date Paper platform [Geyser and Floodgate JAR from the website](https://geysermc.org/download)
+- Once done, exit the shell and restart the container from the web UI.
+- Make sure that your current setup supports the [Prerequisits for geyser](https://wiki.geysermc.org/geyser/setup/#plugin-setup) and [floodgate](https://wiki.geysermc.org/floodgate/setup/)
+- Go *back* into the shell after it restarts and `cd data/plugins/Geyser-Spigot`
+- `nano config.yml`
+- Edit the **auth-type** to `floodgate` under **remote**
+- **Ctrl-X**, type **y** end press **enter** to save and quit the editor
+- Now exit the shell and restart the container for the last time
+- You can now connect to this world from Java and Bedrock outside your network if you port forward ports 25565 and 19132 from your TrueNAS! So cool!
+
 </details>
 
 That's it really! there's so much potential for this kind of setup and should last you a long while before issues. open an issue if you find a problem and submit a pull request if you want to add/fix something
