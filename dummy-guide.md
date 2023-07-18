@@ -492,7 +492,7 @@ When the Container starts, go into its shell via PuTTY by running `heavyscript` 
 - Edit the **auth-type** to `floodgate` under **remote**
 - **Ctrl-X**, type **y** end press **enter** to save and quit the editor
 - Now exit the shell and restart the container for the last time
-- You can now connect to this world from Java and Bedrock outside your network if you port forward ports 25565 and 19132 from your TrueNAS! So cool!
+- You can now connect to this world from Java and Bedrock outside your network if you port forward ports `25565` and `19132` from your TrueNAS! So cool!
 
 </details>
 
