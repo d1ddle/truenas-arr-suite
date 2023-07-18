@@ -1,6 +1,6 @@
-#### TrueNAS Arr Suite and Media Centre guide for dummies. Created 13/7/2023 for TrueNAS scale 22.12.3.1
+#### TrueNAS Arr Suite and Media Centre guide for dummies (like me) Created 13/7/2023 for TrueNAS scale 22.12.3.1
 
-##### This guide is written to be followed in order from top of the page to the bottom. Skipping past parts or following them out of order doesn't work and help won't be given to you.
+##### This guide is written to be followed in order from top of the page to the bottom. Skipping past parts or following them out of order doesn't work and help won't be given to you sorry :(
 
 ##### This might be overwhelming at first. Don't panic, take a deep breath, grab a cola and be prepared to read. I want to make this as painless as possible for you. It was a nightmare for me. It is REALLY useful though, tank you TNAS. Don't forget, you can always ask for help in the ServArr suite and TrueNAS discord servers, I'm sure they'd be happy to help provided the right information.
 
