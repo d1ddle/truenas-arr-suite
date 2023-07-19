@@ -153,6 +153,7 @@ Now the filesystem is completely setup, we're going to install an app automation
 - Name the job `heavyscript`
 - Enter the following in the command line: `bash /root/heavy_script/heavy_script.sh update`
 - Ensure it **runs as root user**
+- Untick **Hide Standard Output**
 - Leave the rest of the settings except make sure it is **Enabled**.
 
 Go back into the Shell as root making sure to `cd /` once in. Now we are going to [configure heavyscript](https://github.com/Heavybullets8/heavy_script). Don't worry, it's pretty easy, just be patient, and prepare to do some reading.
