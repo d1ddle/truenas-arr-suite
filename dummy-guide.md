@@ -474,6 +474,7 @@ Install the TrueCharts `minecraft-java` app in a similar way to the others. Don'
 
 - Add an **RCON password** and tick the **Minecraft Eula**
 - Change the server type to `Paper`. It will download and setup a paper `server.jar`
+- Check **Override Server Properties in GUI**
 - Add your minecraft user as OP (operator)
 - Change any extra world settings you need to
 - Set **Port** and **Query Service Port Configuration** under **Main Service Port Configuration** to `25565`
