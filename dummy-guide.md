@@ -158,7 +158,7 @@ Now the filesystem is completely setup, we're going to install an app automation
 
 Go back into the Shell as root making sure to `cd /` once in. Now we are going to [configure heavyscript](https://github.com/Heavybullets8/heavy_script). Don't worry, it's pretty easy, just be patient, and prepare to do some reading.
 
-- Run `heavyscript` and wait till it finishes, this will generate the config.ini
+- Run `heavyscript` and press 0 to exit when it finishes, this will generate the config.ini
 - Run `nano ~/heavy_script/config.ini`
 - You can copy-paste [my config](https://raw.githubusercontent.com/d1ddle/truenas-arr-suite/main/heavy_script-config.ini) or [imjustleaving's config](https://user-images.githubusercontent.com/109609649/237957850-59b2b18b-56eb-4fd9-98c8-6841a65e272a.png) replacing the default one or work through the default changing the config on your own. But I recommend mine.
 - Hit **Ctrl+X**, then **y** and **enter** to save and exit into the shell.
