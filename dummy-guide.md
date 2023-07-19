@@ -190,14 +190,26 @@ Should look like this after a page refresh.
 - Click `Open` to bring up the web UI where you'll need to add indexers now. I can't tell you what to do here but it's pretty self-explanatory. Of course, YouTube and Google are your friends. We'll be back here to link the other apps.
 
 Now that we've installed at least one app, fix the dataset permissions:
+
 - Goto **Datasets**, select the `tank/data` dataset
 - Goto the **Permissions** section and click **Edit**
 - The ACL Editor should appear.
-- Change the `Owner` and `Owner Group` from `root` to `apps`
-- Check **Apply Owner** and **Apply Group**
+- Select **Add Item**
+- In the **Access Control Entry** set the **Who** to `User` and change the **User** to `apps`
+- Check `read`, `write` and `execute`
+- Select **Add Item**
+- In the **Access Control Entry** set the **Who** to `Group` and change the **Group** to `apps`
+- Check `read`, `write` and `execute`
 - Check **Apply Permissions Recursively**, check **confirm** and **continue**
 - Check **Apply permissions to child datasets**
 - Now **Save Access Control List**
+
+Now go to the shell as `root` and enter these commands:
+
+`sudo chown -R apps:apps /mnt/tank/data`
+`sudo chmod -R a=,a+rX,u+w,g+w /mnt/tank/data`
+
+You can now copy files from the SMB to the app config. This is important for minecraft.
 
 </details>
 <details><summary>
