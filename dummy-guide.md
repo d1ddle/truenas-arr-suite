@@ -75,8 +75,10 @@ Most of the UI is self-explanatory, and when setting stuff up leave options as d
   
 ### 1-1-Storage </summary>
 - Head to the **Storage** tab
-- Create a new pool ideally with raid1 (single disk mirroring) or better.
 - Name the pool `tank`
+- You'll create a new pool ideally with raid1 (single disk mirroring) or better.
+- Do this by checking the available disks and clicking the right arrow to transfer them from the **Available Disks** list to the **Data VDev** list, and check them again.
+- Click Create
 </details>
 
 <details><summary>
