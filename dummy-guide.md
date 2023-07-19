@@ -139,6 +139,21 @@ Now the folder structure is setup, we have to create an NFS share on the `tank` 
 - Click Save
 - **Enable this Service to start automatically** and click **Enable Service** if prompted
 
+- Goto **Credentials** -> **Local Users** and **Add** a new user
+- Check **Create New Primary Group**
+- Give it a name and password
+- Check **Samba Authentication**
+- Save
+
+- Back in **Shares**, press the shield in the SMB share labelled **Edit Filesystem ACL**
+This opens the ACL editor
+- Click **Add Item**, and in the **Access Control Entry** select the **Who** as `User`
+- As the **User** select the user you created earlier.
+- Check the `read`, `write` and `execute` boxes.
+- Check **Apply Permissions Recursively**, **Confirm** and **continue**
+- **Save Access Control List**
+You can now use the user you created to access the Samba Share.
+
 </details>
 
 Now the filesystem is completely setup, we're going to install an app automation and updater tool called HeavyScript, written by TrueCharts dev and TRaSH guide writer HeavyBullets.
