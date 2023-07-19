@@ -116,7 +116,7 @@ This is the folder structure we'll create.
 
 - Go to **System Settings** -> **Shell**
 
-You can use this shell to enter the command line as root, but I'm going to assume you're using your own SSH client (like [PuTTY](https://www.putty.org/)) since the web shell doesn't support nano file edit properly. You can turn on SSH in **System Settings** -> **Services**. Set auto-start with the system and user as root.
+You can use this shell to enter the command line as root, but I'm going to assume you're using your own SSH client (like [PuTTY](https://www.putty.org/)) since the web shell doesn't support nano file edit properly. You can turn on SSH in **System Settings** -> **Services**, making sure you check start automatically. Edit the service to check **Log in as Root with Password** and Save
 
 - Enter `cd /`
 - Enter `cd mnt/tank/data`
