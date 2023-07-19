@@ -57,6 +57,8 @@ Most of the UI is self-explanatory, and when setting stuff up leave options as d
   - Select your SSD boot disk (should be the only drive in the system)
   - Select Yes to **erase all data on the SSD. Back up before continuing.**
   - Select `Fresh Install`
+  - Select `Format the Boot device` if given an option
+  - Select `Yes` to confirm and continue you've picked the correct SSD
   - Select `Root User` for the Web UI Auth method
   - Create a password and KEEP it SAFE
   - Select `Create Swap` partition if you are asked
