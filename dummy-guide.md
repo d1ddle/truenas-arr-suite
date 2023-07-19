@@ -65,9 +65,8 @@ Most of the UI is self-explanatory, and when setting stuff up leave options as d
   - Select `Boot via UEFI` at the Boot Mode prompt
 - Once rebooted and logged in, you should see the following.
 
-![image](https://github.com/d1ddle/truenas-arr-suite/assets/69437145/87e3eeb7-906f-467b-b89c-e941c1ce702d)
+![192 168 1 239_ui_dashboard](https://github.com/d1ddle/truenas-arr-suite/assets/69437145/273c2cc2-b4bd-4be6-92f6-0bf943afceec)
 
-Bear in mind this screenshot was taken from a virtual machine.
 - Shut down the system using the top right menu and put your HDD drives back into the system, then reboot.
 - Log back into the Web UI and go to **System Settings** -> **General** -> **Localization Settings** and apply the correct Timezone, Time Format and Date Format. *****This is ABSOLUTELY NECCESSARY and avoids days of headaches furthur down the line.*****
 </details>
