@@ -173,6 +173,17 @@ Go back into the Shell as root making sure to `cd /` once in. Now we are going t
 
 Should look like this after a page refresh.
 - Click `Open` to bring up the web UI where you'll need to add indexers now. I can't tell you what to do here but it's pretty self-explanatory. Of course, YouTube and Google are your friends. We'll be back here to link the other apps.
+
+Now that we've installed at least one app, fix the dataset permissions:
+- Goto **Datasets**, select the `tank/data` dataset
+- Goto the **Permissions** section and click **Edit**
+- The ACL Editor should appear.
+- Change the `Owner` and `Owner Group` from `root` to `apps`
+- Check **Apply Owner** and **Apply Group**
+- Check **Apply Permissions Recursively**, check **confirm** and **continue**
+- Check **Apply permissions to child datasets**
+- Now **Save Access Control List**
+
 </details>
 <details><summary>
 
@@ -486,7 +497,8 @@ Install the TrueCharts `minecraft-java` app in a similar way to the others. Don'
 
 When the Container starts, go into its shell via PuTTY by running `heavyscript` as root and selecting Application options to open the container shell.
 
-- `cd data/plugins`
+- `cd data/minecraft`; this should be the shared directory you added to **Storage and Persistence** when installing.
+- 
 - Use `wget` to download both up-to-date Paper platform [Geyser and Floodgate JAR from the website](https://geysermc.org/download)
 - Once done, exit the shell and restart the container from the web UI.
 - Make sure that your current setup supports the [Prerequisits for geyser](https://wiki.geysermc.org/geyser/setup/#plugin-setup) and [floodgate](https://wiki.geysermc.org/floodgate/setup/)
