@@ -132,10 +132,12 @@ Now the folder structure is setup, we have to create an NFS share on the `tank` 
 - Go to the **Shares** tab and **Add** a new NFS Share
 - Set the path as `/mnt/tank/data` and Enable it
 - Click Save
+- Click **Start Service** if prompted
 
 - **Add** a new SMB Share
 - Set the path as `mnt/tank/data` and Enable it
 - Click Save
+- **Enable this Service to start automatically** and click **Enable Service** if prompted
 
 </details>
 
