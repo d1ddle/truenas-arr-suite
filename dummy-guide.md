@@ -187,7 +187,7 @@ Go back into the Shell as root making sure to `cd /` once in. Now we are going t
 ![image](https://github.com/d1ddle/truenas-arr-suite/assets/69437145/7dc0ea7b-3dd3-43ba-906e-ffa57316af64)
 
 Should look like this after a page refresh.
-- Click `Open` to bring up the web UI where you'll need to add indexers now. I can't tell you what to do here but it's pretty self-explanatory. Of course, YouTube and Google are your friends. We'll be back here to link the other apps.
+- Click `Open` to bring up the web UI where you'll need to add indexers now. I can't tell you what to do here but it's pretty self-explanatory. Of course, YouTube and Google are your friends. We'll be back here to link the other apps. Note that if you live in a country which they're blocked as mentioned at the start, most of the indexers you'll want to add won't work until you add the VPN proxy.
 
 Now that we've installed at least one app, fix the dataset permissions:
 
