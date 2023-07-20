@@ -284,6 +284,7 @@ And so on. When done Save.
 
 Now we can go back into the qBit UI and change our Network settings.
 - In **Tools** -> **Options** -> **Advanced**, change the `Network Interface` to `tun0`, short for Gluetun, the name of the VPN addon.
+- Change **Optional IP address to bind to** to `All IPv4 addresses`
 - This settings page should now match mine.
 
 ![image](https://github.com/d1ddle/truenas-arr-suite/assets/69437145/8878a921-6d7b-4472-ad2a-3fc626e8e075)
