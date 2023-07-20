@@ -295,7 +295,7 @@ Now we can go back into the qBit UI and change our Network settings.
 ### 2-3-Prowlarr-Proxy </summary>
 The VPN Indexer proxy for prowlarr will use the same addon Gluetun from the setup above, so make sure you've completed that first. This is all also written [in TrueCharts' guide](https://truecharts.org/manual/SCALE/guides/vpn-setup/#proxy-example)
 
-- Under **Addon Environment Variables** while editing the qBittorrent app settings, add `HTTPPROXY=on` and `HTTPPROXY_LOG=on`
+- Under **VPN Environment Variables** while editing the qBittorrent app settings, add `HTTPPROXY=on` and `HTTPPROXY_LOG=on`
 
 ![image](https://github.com/d1ddle/truenas-arr-suite/assets/69437145/eccf44d4-0271-45df-a7e4-7b7743b30f44)
 
