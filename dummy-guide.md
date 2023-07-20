@@ -317,6 +317,8 @@ Now we can add this to Prowlarr.
 - Host should be `qbittorrent-proxy.ix-qbittorrent.svc.cluster.local` if you installed Gluetun on qbittorrent like here
 - Port: `8888`
 - Click `Test` to confirm the connection and click Save
+&nbsp; &nbsp; - **Note:** If you get any connection errors from prowlarr, make sure to restart the qBit container; the ports may not be open yet.
+- If you still find problems, check you've done stuff right with [the TrueCharts guide](https://truecharts.org/manual/SCALE/guides/vpn-setup/#proxy-example) and [this Github issue](https://github.com/qdm12/gluetun/issues/711)
 
 ![image](https://github.com/d1ddle/truenas-arr-suite/assets/69437145/986040c4-6fc2-47a1-a16a-5e7fd1fa2006)
 
