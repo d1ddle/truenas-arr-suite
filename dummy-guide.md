@@ -382,6 +382,8 @@ Now we'll add a root folder to radarr.
   <img src="https://github.com/d1ddle/truenas-arr-suite/assets/69437145/741b5b04-239e-42bb-869c-307f8b009742"></img src>
 </details>
 
+***Don't forget to Save Changes!***
+
 - Go back to **Download Clients** and Enable **Completed Download Handling**, set Interval to 1 minute
 - Check **Redownload** under **Failed Download Handling**.
 
