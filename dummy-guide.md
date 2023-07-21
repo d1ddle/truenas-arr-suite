@@ -4,8 +4,9 @@
 https://docs.xstar97thenoob.com/docs/intro \
 https://trash-guides.info/Hardlinks/How-to-setup-for/Docker/ \
 https://truecharts.org/manual/SCALE/guides/getting-started \
+https://discord.gg/truenas \
 https://www.truenas.com/docs/ \
-https://github.com/imjustleaving/trueNAS/wiki/A-Guide-to-go-from-a-bare-metal-TrueNAS-Scale-install-to-a-Fully-Automated-Media-Server \
+https://github.com/imjustleaving/trueNAS/wiki/A-Guide-to-go-from-a-bare-metal-TrueNAS-Scale-install-to-a-Fully-Automated-Media-Server
 
 ##### This guide is written to be followed in order from top of the page to the bottom. Skipping past parts or following them out of order doesn't work and help won't be given to you sorry :(
 
