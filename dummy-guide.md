@@ -1,5 +1,12 @@
 #### TrueNAS Arr Suite and Media Centre guide for dummies (like me) Created 13/7/2023 for TrueNAS scale 22.12.3.1
 
+# YO LOOK I'VE GIVEN UP ALREADY USE THESE INSTEAD:
+https://docs.xstar97thenoob.com/docs/intro
+https://trash-guides.info/Hardlinks/How-to-setup-for/Docker/
+https://truecharts.org/manual/SCALE/guides/getting-started
+https://www.truenas.com/docs/
+https://github.com/imjustleaving/trueNAS/wiki/A-Guide-to-go-from-a-bare-metal-TrueNAS-Scale-install-to-a-Fully-Automated-Media-Server
+
 ##### This guide is written to be followed in order from top of the page to the bottom. Skipping past parts or following them out of order doesn't work and help won't be given to you sorry :(
 
 ##### This might be overwhelming at first. Don't panic, take a deep breath, grab a cola and be prepared to read. I want to make this as painless as possible for you. It was a nightmare for me. It is REALLY useful though, tank you TNAS. Don't forget, you can always ask for help in the ServArr suite and TrueNAS discord servers, I'm sure they'd be happy to help provided the right information.
@@ -547,3 +554,28 @@ That's it really! there's so much potential for this kind of setup and should la
 
 <details><summary>
 Do what you want</summary> ('cos a P1rate is free, you are a P1rate!)</details>
+
+
+### Fixing SMB Permissions
+for smb access do this though:
+
+# Using samba with Truecharts
+
+### Setting up a local user
+You need a local user with access to the apps group.
+Go to Credentials -> Local Users, click on your local user and click Edit.
+Add apps to the Auxiliary Groups.
+
+### Setting up a dataset
+Go to Storage, click Add dataset where you want it, give it a name and click Save.
+Click the 3 dots behind the new dataset, click View Permissions and click the pen.
+Change the user to apps and the group to apps. Check Apply User, Apply Group and click Save.
+
+### Setting up a share
+Go to Shares, click Add and select the path to your dataset.
+Click Advanced options and put the following in the Auxiliary Parameters field:
+```
+force user=apps
+force group=apps
+```
+
