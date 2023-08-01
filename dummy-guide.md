@@ -1,6 +1,6 @@
 #### TrueNAS Arr Suite and Media Centre guide for dummies (like me) Created 13/7/2023 for TrueNAS scale 22.12.3.1
 
-# YO LOOK I'VE GIVEN UP ALREADY USE THESE INSTEAD:
+#### These are useful:
 https://docs.xstar97thenoob.com/docs/intro \
 https://trash-guides.info/Hardlinks/How-to-setup-for/Docker/ \
 https://truecharts.org/manual/SCALE/guides/getting-started \
