@@ -67,7 +67,7 @@ Most of the UI is self-explanatory, and when setting stuff up leave options as d
   - Select `Fresh Install`
   - Select `Format the Boot device` if given an option
   - Select `Yes` to confirm and continue you've picked the correct SSD
-  - Select `Root User` for the Web UI Auth method
+  - Select `Root User` for the Web UI Auth method (Note: this MAY cause future headaches. I'm revisiting this guide now since my install got corrupted and I'm unsure as to why, I think this may be the cause, but unconfirmed yet.)
   - Create a password and KEEP it SAFE
   - Select `Create Swap` partition if you are asked
   - Select `Boot via UEFI` at the Boot Mode prompt
