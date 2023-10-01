@@ -553,9 +553,6 @@ When the Container starts, go into its shell via PuTTY by running `heavyscript` 
 
 That's it really! there's so much potential for this kind of setup and should last you a long while before issues. open an issue if you find a problem and submit a pull request if you want to add/fix something
 
-<details><summary>
-Do what you want</summary> ('cos a P1rate is free, you are a P1rate!)</details>
-
 
 ### Fixing SMB Permissions
 for smb access do this though:
