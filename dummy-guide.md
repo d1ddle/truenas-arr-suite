@@ -41,7 +41,7 @@ Most of the UI is self-explanatory, and when setting stuff up leave options as d
 &nbsp; &nbsp; 2.3 - [qBit VPN](#2-2-qbittorrent-vpn-)\
 &nbsp; &nbsp; 2.4 - [Prowlarr VPN Indexer Proxy](#2-3-prowlarr-proxy-)\
 3 - [Radarr setup](#3-radarr-)\
-4 - [Sonarr setup](#3-1-sonarr-)\
+4 - [Sonarr setup](#3-1-sonarr)\
 5 - [Unpackerr](#5-unpackerr-)\
 6 - [Emby setup](#6-emby-)\
 7 - [Jellyseer setup](#7-jellyseer-)\
