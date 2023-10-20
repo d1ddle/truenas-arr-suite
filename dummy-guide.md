@@ -399,6 +399,9 @@ Now we'll add a root folder to radarr.
 
 Now we'll make some changes to only allow WEBrips/bluray for example but it's totally customisable. You're going to have to setup Custom Formats and Quality Profiles. This is quite extensive, so I'm going to link you the guides I used instead of quoting them and removing tattle like I've done so far.
 
+Edit: I currently now use Recyclarr. Much easier:
+Install it from truecharts,
+
 [Start with importing the Custom Formats](https://trash-guides.info/Radarr/Radarr-import-custom-formats/) you need for your setup. Most of you won't need the ones that start with FR- these are french specific.
 
 **Note:** [Start adding more Custom Formats wisely, Don't add all the available Custom Formats!!!](https://trash-guides.info/Radarr/Radarr-import-custom-formats/#start-adding-other-custom-formats-wisely)
