@@ -387,6 +387,8 @@ Now we'll add a root folder to radarr.
 
 <details>
   <summary>Optimal <b>Media Management</b> Settings</summary>
+  ```{Movie CleanTitle} {(Release Year)} - {Edition Tags }{[Custom Formats]}{[Quality Full]}{[MediaInfo 3D]}{[MediaInfo VideoDynamicRangeType]}{[Mediainfo AudioCodec}{ Mediainfo AudioChannels]}[{Mediainfo VideoCodec}]{-Release Group}
+```
   <img src="https://github.com/d1ddle/truenas-arr-suite/assets/69437145/741b5b04-239e-42bb-869c-307f8b009742"></img src>
 </details>
 
